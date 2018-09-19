@@ -1,0 +1,55 @@
+{
+  "name": "protractor_js",
+  "version": "1.0.0",
+  "description": "first steps in testing with protractor framework",
+  "main": "index.js",
+  "scripts": {
+    "wd-up": "webdriver-manager update",
+    "wd-st": "webdriver-manager start",
+    "test": "protractor ./configs/conf.js",
+    "posttest": ".\\reports\\screenshots\\Bellagio.html",
+    "start": "node ./node_modules/gulp/bin/gulp.js",
+    "lint": "eslint ./ --fix",
+    "gulp": "node ./node_modules/gulp/bin/gulp.js",
+    "preinstall": "mkdir logs .\\reports\\screenshots",
+    "postinstall": "webdriver-manager update",
+    "server": "start cmd /k \"node_modules\\.bin\\webdriver-manager start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarneyenkaDzmitry/protractor_js.git"
+  },
+  "keywords": [
+    "protractor",
+    "jasmine"
+  ],
+  "author": "Dzmitry_Karneyenka, Belarus, Minsk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarneyenkaDzmitry/protractor_js/issues"
+  },
+  "homepage": "https://github.com/KarneyenkaDzmitry/protractor_js#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cli": "^2.0.1",
+    "gulp-protractor": "^4.1.0",
+    "jasmine": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "protractor-jasmine2-screenshot-reporter": "^0.5.0",
+    "protractor": "^5.4.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-plugin-angular": "^3.3.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "gulp-shell": "^0.6.5",
+    "run-sequence": "^2.2.1"
+  }
+}
