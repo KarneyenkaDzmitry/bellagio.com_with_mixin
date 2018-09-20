@@ -13,7 +13,7 @@ class Restaurants extends Header {
     }
 
     filter(...options) {
-        browser.wait(ec.presenceOf(this.filterButtons), 10000)//.then(()=>element.all(by.css('button[id*=tagsFilter]')))
+        browser.wait(ec.presenceOf(this.filterButtons), 10000)
             .then(() => options.forEach((option, ind) => {
                 console.log();
                 if (option !== 'Clear') {
