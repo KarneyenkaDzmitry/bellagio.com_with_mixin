@@ -4,9 +4,12 @@ const { logger } = require('../configs/logger.conf');
 const helper = require('../page-objects/utils/page.helper');
 const host = 'https://www.bellagio.com/en.html';
 let page = require('../page-objects/home.page');
+const restarantsPageTitle = 'RESTAURANTS';
+const reservationPageTitle = 'Find Your Reservation';
+const hotelPageTitle = 'HOTEL ROOMS & SUITES';
+const nameOfRestaurantsLargo = 'LAGO BY JULIAN SERRANO';
 
 describe('bellagio resource', () => {
-
     beforeEach(() => {
         browser.get(host).then(() => helper.get())
             .catch(err => {
@@ -17,7 +20,6 @@ describe('bellagio resource', () => {
     });
 
     describe('Tests of restaurants service', () => {
-
         beforeEach(async () => {
             page = await helper.get();
             logger.info(`In block beforeEach of tests of restaurants service. Browser opens page of restaurants`);
@@ -27,7 +29,7 @@ describe('bellagio resource', () => {
 
         it('should have title "RESTAURANTS" and results wrapper', () => {
             logger.info('In block it. Check title and results wrapper of restaurants` page');
-            expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+            expect(page.pageTitle.getText()).toEqual(restarantsPageTitle);
             expect(page.resultsWrapper.isPresent()).toBe(true);
         });
 
@@ -35,11 +37,11 @@ describe('bellagio resource', () => {
             'price = Clear, meal = Breakfast And Brunch', () => {
                 logger.info('In block it. fileter of restaurants` page');
                 page.filter('Italian', 'Clear', 'Breakfast and Brunch');
-                expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+                expect(page.pageTitle.getText()).toEqual(restarantsPageTitle);
                 expect(page.filterResults.count()).toEqual(1);
                 page.getListOfRestaurants()
                     .then((list) =>
-                        expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
+                        expect(list.indexOf(nameOfRestaurantsLargo) > -1).toEqual(true));
             });
     });
 
@@ -54,7 +56,7 @@ describe('bellagio resource', () => {
 
         it('should have a text - "Find Your Reservation" and form with 5 inputs', () => {
             logger.info('In block it. Reservation page should have a text - "Find Your Reservation" and form with 5 inputs');
-            expect(page.accountPageTitle.getText()).toEqual('Find Your Reservation');
+            expect(page.accountPageTitle.getText()).toEqual(reservationPageTitle);
             expect(page.accountForm.getAttribute('method')).toEqual('post');
         });
 
@@ -114,7 +116,7 @@ describe('bellagio resource', () => {
 
         it('should have title "HOTEL ROOMS & SUITES" and results wrapper', () => {
             logger.info('In block it. Check name of hotel page');
-            expect(page.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
+            expect(page.pageTitle.getText()).toEqual(hotelPageTitle);
             expect(page.results.isPresent()).toBe(true);
         });
     });

@@ -19,7 +19,7 @@ class Restaurants extends Header {
                 if (option !== 'Clear') {
                     const opt = `//a[text()="${options[ind]}"][@class]`;
                     $$('button[id*=tagsFilter]')
-                        //.then((elements) => { browser.sleep(500); return elements; })
+                        .then((elements) => { browser.sleep(500); return elements; })
                         .then((elements) => { browser.wait(ec.visibilityOf (elements[ind]), 5000); return elements; })
                         .then((elements) => { browser.wait(ec.elementToBeClickable(elements[ind]), 5000); return elements; })
                         .then((elements) => { elements[ind].click(); return elements; })
