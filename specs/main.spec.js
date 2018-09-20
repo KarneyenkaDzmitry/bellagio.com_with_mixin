@@ -2,27 +2,27 @@
 
 const { logger } = require('../configs/logger.conf');
 const helper = require('../page-objects/utils/page.helper');
-
+const host = 'https://www.bellagio.com/en.html';
+let page = require('../page-objects/home.page');
 
 describe('bellagio resource', () => {
-    let page = helper.getPage('home');
 
     beforeEach(() => {
-        page = helper.getPage('home');
-        browser.get(page.url)
+        browser.get(host).then(() => helper.get())
             .catch(err => {
-                logger.err(`Error during loading page [${page.url}}`);
+                logger.err(`Error during loading page [${host}}`);
                 return err;
             });
-        logger.info(`In block beforeEach. Browser opens page ${page.url}`);
+        logger.info(`In block beforeEach. Browser opens page ${host}`);
     });
 
     describe('Tests of restaurants service', () => {
 
-        beforeEach(() => {
+        beforeEach(async () => {
+            page = await helper.get();
             logger.info(`In block beforeEach of tests of restaurants service. Browser opens page of restaurants`);
             page.goToRestaurantsPage();
-            page = helper.getPage('restaurants');
+            page = await helper.get();
         });
 
         it('should have title "RESTAURANTS" and results wrapper', () => {
@@ -45,10 +45,11 @@ describe('bellagio resource', () => {
 
     describe('Reservation service', () => {
 
-        beforeEach(() => {
+        beforeEach(async () => {
+            page = await helper.get();
             logger.info(`In block beforeEach of tests of reservation service. Browser opens page of reservation`);
             page.goToReservationPage();
-            page = helper.getPage('reservation');
+            page = await helper.get();
         });
 
         it('should have a text - "Find Your Reservation" and form with 5 inputs', () => {
@@ -66,48 +67,49 @@ describe('bellagio resource', () => {
     });
 
     describe('Search service tests', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
+            page = await helper.get();
             logger.info(`In block beforeEach of tests of search service. Browser opens page of search`);
             page.openSearchBox();
-            // page = helper.getPage('search');
+            page = await helper.get();
         });
 
         it('should include at least two elements: search field, disabled "Search button"', () => {
             logger.info('In block it. Search page should include at least two elements: search field, disabled "Search button"');
-            page = helper.getPage('search');
             expect(page.searchField.isPresent()).toEqual(true);
             expect(page.searchButton.isEnabled()).toEqual(false);
         });
 
         it('if search service doesn\'t find anything, it should show ' +
             '"Sorry, your search for [serched text] did not return any results. Please try different search terms or browse our sitemap."', () => {
-            logger.info('In block it. if search service doesn\'t find anything');
-            const word = 'dusolei';
-            page.find(word)
-                .then(() => browser.refresh())
-                .then(() => page = helper.getPage('search'))
-                .then(() => page.noResult.getText())
-                .then((text) =>
-                    expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
-        });
+                logger.info('In block it. if search service doesn\'t find anything');
+                const word = 'dusolei';
+                page.find(word)
+                    .then(() => browser.refresh())
+                    .then(() => helper.get())
+                    .then((page) => page.noResult.getText())
+                    .then((text) =>
+                        expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
+            });
 
         it('When I type "du soleil" I have to see the page of results with the fitst result`s title contains text "CIRQUE DU SOLEIL"', () => {
             logger.info('In block it. Check search results');
             const word = 'du soleil';
             page.find(word)
                 .then(() => browser.refresh())
-                .then(() => page = helper.getPage('search'))
-                .then(() => page.getFirstResultTitle())
+                .then(() => helper.get())
+                .then((page) => page.getFirstResultTitle())
                 .then((text) =>
                     expect(text.indexOf('CIRQUE DU SOLEIL') > -1).toEqual(true));
         });
     });
 
     describe('Hotel servise tests', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
+            page =await  helper.get();
             logger.info(`In block beforeEach of tests of hotel service. Browser opens hotel page`);
             page.goToHotelPage();
-            page = helper.getPage('hotel');
+            page =await  helper.get();
         });
 
         it('should have title "HOTEL ROOMS & SUITES" and results wrapper', () => {
@@ -118,10 +120,11 @@ describe('bellagio resource', () => {
     });
 
     describe('Entertainment service tests', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
+            page =await  helper.get();
             logger.info(`In block beforeEach of tests of entertainment service. Browser opens entertainment page`);
             page.goToEntertainmentPage();
-            page = helper.getPage('entertainment');
+            page =await  helper.get();
         });
 
         it('it should show entertament page with text "ENTERTAINMENT"', () => {
