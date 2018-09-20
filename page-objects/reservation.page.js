@@ -1,6 +1,8 @@
 'use strict';
-const header = require('./header.page.js');
-class ReservationPage extends header {
+
+const Header = require('./header.page.js');
+
+class ReservationPage extends Header {
     constructor() {
         super();
         this.accountPageTitle = element(by.css('.account-page-title'));

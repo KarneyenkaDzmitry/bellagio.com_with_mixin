@@ -2,7 +2,7 @@
 
 class SearchComponenet {
     constructor() {
-        this.search = element(by.css('ul>li.nav-search.search-expanded'));//'*[aria-label*="Search"]'
+        this.search = element(by.css('ul>li.nav-search.search-expanded'));
         this.searchButton = element(by.css('*[aria-label*="Search"]'));
         this.searchField = element(by.model('globalSearchKeyword'));
         this.searchGoButton = element(by.css('*[aria-label=Search]'));

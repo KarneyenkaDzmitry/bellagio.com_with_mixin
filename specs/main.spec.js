@@ -27,7 +27,6 @@ describe('bellagio resource', () => {
 
         it('should have title "RESTAURANTS" and results wrapper', () => {
             logger.info('In block it. Check title and results wrapper of restaurants` page');
-
             expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
             expect(page.resultsWrapper.isPresent()).toBe(true);
         });
@@ -36,7 +35,6 @@ describe('bellagio resource', () => {
             'price = Clear, meal = Breakfast And Brunch', () => {
                 logger.info('In block it. fileter of restaurants` page');
                 page.filter('Italian', 'Clear', 'Breakfast and Brunch');
-
                 expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
                 expect(page.filterResults.count()).toEqual(1);
                 page.getListOfRestaurants()
@@ -55,17 +53,14 @@ describe('bellagio resource', () => {
 
         it('should have a text - "Find Your Reservation" and form with 5 inputs', () => {
             logger.info('In block it. Reservation page should have a text - "Find Your Reservation" and form with 5 inputs');
-
             expect(page.accountPageTitle.getText()).toEqual('Find Your Reservation');
             expect(page.accountForm.getAttribute('method')).toEqual('post');
         });
 
         it('can choose room in field - "reservation"', () => {
             logger.info('In block it. Reservation page, choosing room in field - "reservation"');
-
             expect(page.roomReservation.isSelected()).toBe(false);
             page.chooseRoomReservation();
-
             expect(page.roomReservation.isSelected()).toBe(true);
         });
     });
@@ -117,7 +112,6 @@ describe('bellagio resource', () => {
 
         it('should have title "HOTEL ROOMS & SUITES" and results wrapper', () => {
             logger.info('In block it. Check name of hotel page');
-
             expect(page.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
             expect(page.results.isPresent()).toBe(true);
         });
@@ -132,14 +126,12 @@ describe('bellagio resource', () => {
 
         it('it should show entertament page with text "ENTERTAINMENT"', () => {
             logger.info('In block it. Check name of entertainment page');
-
             expect(page.pageTitle.getText()).toEqual('ENTERTAINMENT');
             expect(page.resultsWrapper.isPresent()).toBe(true);
         });
 
         it('entertainment page should contain default component base with title "WHILE AT BELLAGIO"', () => {
             logger.info('In block it. Check location of  base component on entertainment page with title "WHILE AT BELLAGIO"');
-
             expect(page.getDefaultComponentTitle()).toEqual('WHILE AT BELLAGIO');
         });
     });

@@ -32,6 +32,4 @@ class GuestServicesComponent extends GuestServicesMenu {
             }
 }
 
-
-
 module.exports = GuestServicesComponent;

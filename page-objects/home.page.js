@@ -1,9 +1,8 @@
 'use strict';
-const mixin = require('./utils/mixin.js');
-const header = require('./header.page.js');
-//const footer = {};extends mixin(header, footer)
 
-class HomePage  extends header{
+const Header = require('./header.page.js');
+
+class HomePage extends Header {
     constructor() {
         super();
         this.url = 'https://www.bellagio.com';

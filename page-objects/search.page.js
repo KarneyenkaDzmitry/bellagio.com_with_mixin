@@ -1,7 +1,8 @@
 'use strict';
-const { logger } = require('../configs/logger.conf');
-const header = require('./header.page.js');
-class SearchPage extends header{
+
+const Header = require('./header.page.js');
+
+class SearchPage extends Header{
     constructor() {
         super();
         this.searchTitle = $('.site-search-header');

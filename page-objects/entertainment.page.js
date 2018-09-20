@@ -1,6 +1,8 @@
 'use strict';
-const header = require('./header.page.js');
-class EntertainmentPage extends header {
+
+const Header = require('./header.page.js');
+
+class EntertainmentPage extends Header {
     constructor() {
         super();
         this.pageTitle = $('h1');
