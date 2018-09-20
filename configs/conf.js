@@ -1,5 +1,6 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
+
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 
