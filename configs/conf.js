@@ -1,51 +1,29 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
 
-let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
-const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
-
-const reporter = new HtmlScreenshotReporter({
-    dest: './reports/screenshots',
-    filename: 'Bellagio.html',
-    cleanDestination: true,
-    showSummary: true,
-    showQuickLinks: true,
-    showConfiguration: false,
-    reportTitle: 'BELLAGIO.COM',
-    reportOnlyFailedSpecs: false,
-    captureOnlyFailedSpecs: false
-});
-
 exports.config = {
     getPageTimeout: 60000,
-    framework: 'jasmine2',
-    jasmineNodeOpts: {
-        showColors: true,
-        silent: true,
-        defaultTimeoutInterval: 360000,
-        /* eslint-disable */
-        print: function() {}
-        /* eslint-enable */
+    framework: 'custom',
+    frameworkPath: require.resolve('protractor-cucumber-framework'),
+    cucumberOpts: {
+        "require": ['../features/step_definitions/*steps.js', '../features/step_definitions/hooks.js'],
+        "tags": false,
+        "profile": false,
+        'no-source': true,
+        "format": 'json:./reports/report.json',
+        "ignoreUncaughtExceptions": true
+        //   tags: ['~@wip', '~@manual']
     },
+    specs: ['../features/*.feature'],
     logLevel: 'ERROR',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     allScriptsTimeout: 500000,
-    specs: ['../specs/**/*spec.js'],
     onPrepare: () => {
         logger.info('Browser starts in maximize size for running tests');
         browser.driver.manage().window().maximize();
         browser.driver.manage().timeouts().implicitlyWait(20000);
         browser.waitForAngularEnabled(true);
         global.ec = protractor.ExpectedConditions;
-        jasmine.getEnv().addReporter(new SpecReporter({
-            spec: {
-                displayStacktrace: true
-            },
-            summary: {
-                displayDuration: true
-            }
-        }));
-        jasmine.getEnv().addReporter(reporter);
     },
     capabilities: {
         browserName: 'chrome',
@@ -55,17 +33,8 @@ exports.config = {
     },
     beforeLaunch: () => {
         logger.info('Get started!');
-        return new Promise(resolve => {
-            reporter.beforeLaunch(resolve);
-        });
     },
-    afterLaunch: (exitCode) => {
+    afterLaunch: () => {
         logger.info('Done');
-        return new Promise(resolve => {
-            /* eslint-disable */
-            reporter.afterLaunch(resolve.bind(this, exitCode));
-            /* eslint-enable */
-        });
-
     }
 };

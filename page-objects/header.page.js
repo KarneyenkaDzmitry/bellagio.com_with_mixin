@@ -7,6 +7,18 @@ const searchComponenet = require('./componenets/search.component.js');
 const guestServiceComponenet = require('./componenets/guest_services.component.js');
 const entertainmentComponenet = require('./componenets/entertainment.component.js');
 
-class Header extends mixin(hotelComponenet, restaurantsComponenet, searchComponenet, guestServiceComponenet, entertainmentComponenet) {};
+class Header extends mixin(hotelComponenet, restaurantsComponenet, searchComponenet, guestServiceComponenet, entertainmentComponenet) {
+    constructor() {
+        super();
+    }
+    
+    chooseReference(refer) {
+        switch(refer.toLowerCase()){
+            case 'hotel': return this.goToHotelPage();  
+            case 'entertainment': return  this.goToEntertainmentPage();
+            case 'restaurants': return  this.goToRestaurantsPage();
+        } 
+    }
+};
 
 module.exports = Header;

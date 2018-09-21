@@ -5,8 +5,8 @@ const Header = require('./header.page.js');
 class Restaurants extends Header {
     constructor() {
         super();
-        this.pageTitle = $('h1');
-        this.resultsWrapper = $('#results-wrapper');
+        this.titleH1 = $('h1');
+        this.results = $('#results-wrapper');
         this.filterButtons = element.all(by.css('button[id*=tagsFilter]'));
         this.filterResults = $$('div.result');
         this.url = 'https://www.bellagio.com/en/restaurants.html';
