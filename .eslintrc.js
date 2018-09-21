@@ -3,8 +3,7 @@ module.exports = {
         "browser": true,
         "es6": true,
         "node": true,
-        "protractor": true,
-        "jasmine": true
+        "protractor": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -23,7 +22,7 @@ module.exports = {
         "accessor-pairs": 2,
         "block-scoped-var": 2,
         "complexity": ["error", 4],
-        "consistent-return": 2,
+        "consistent-return": 0,
         "curly": 2,
         "default-case": 2,
         "dot-location": [2, "property"],

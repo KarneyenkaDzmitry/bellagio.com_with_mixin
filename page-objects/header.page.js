@@ -11,14 +11,15 @@ class Header extends mixin(hotelComponenet, restaurantsComponenet, searchCompone
     constructor() {
         super();
     }
-    
+
     chooseReference(refer) {
-        switch(refer.toLowerCase()){
-            case 'hotel': return this.goToHotelPage();  
-            case 'entertainment': return  this.goToEntertainmentPage();
-            case 'restaurants': return  this.goToRestaurantsPage();
-        } 
+        switch (refer.toLowerCase()) {
+        case 'hotel': return this.goToHotelPage();
+        case 'entertainment': return this.goToEntertainmentPage();
+        case 'restaurants': return this.goToRestaurantsPage();
+        default: return new Error('There is no the reference. Wrong parameter ', refer);
+        }
     }
-};
+}
 
 module.exports = Header;

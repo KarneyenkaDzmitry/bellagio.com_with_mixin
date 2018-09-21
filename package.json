@@ -7,7 +7,6 @@
     "wd-up": "webdriver-manager update",
     "wd-st": "webdriver-manager start",
     "test": "protractor ./configs/conf.js",
-    "posttest": ".\\reports\\screenshots\\Bellagio.html",
     "start": "node ./node_modules/gulp/bin/gulp.js",
     "lint": "eslint ./ --fix",
     "gulp": "node ./node_modules/gulp/bin/gulp.js",
@@ -21,7 +20,7 @@
   },
   "keywords": [
     "protractor",
-    "jasmine"
+    "cucumber"
   ],
   "author": "Dzmitry_Karneyenka, Belarus, Minsk",
   "license": "ISC",
@@ -35,11 +34,8 @@
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-protractor": "^4.1.0",
-    "jasmine": "^3.1.0",
-    "jasmine-spec-reporter": "^4.2.1",
     "protractor": "^5.4.0",
     "protractor-cucumber-framework": "^6.1.1",
-    "protractor-jasmine2-screenshot-reporter": "^0.5.0",
     "winston": "^3.0.0"
   },
   "devDependencies": {

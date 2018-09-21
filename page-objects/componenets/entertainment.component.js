@@ -1,6 +1,6 @@
 'use strict';
 
-class EntertainmentComponenet{
+class EntertainmentComponenet {
     constructor() {
         this.entertainment = element(by.css('a[class*=entertainment]'));
     }

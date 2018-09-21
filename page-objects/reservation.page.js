@@ -8,7 +8,7 @@ class ReservationPage extends Header {
         this.accountPageTitle = element(by.css('.account-page-title'));
         this.accountForm = element(by.css('#find-reservation-form'));
         this.roomReservation = element(by.xpath('//select/option[@value="room"]'));
-        this.url = 'https://www.bellagio.com/en/itineraries/find-reservation.html'
+        this.url = 'https://www.bellagio.com/en/itineraries/find-reservation.html';
     }
     chooseRoomReservation() {
         this.roomReservation.click();

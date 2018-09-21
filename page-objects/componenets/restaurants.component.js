@@ -1,6 +1,6 @@
 'use strict';
 
-class RestaurantsComponenet{
+class RestaurantsComponenet {
     constructor() {
         this.restaurants = $('a[class*=restaurants]');
     }

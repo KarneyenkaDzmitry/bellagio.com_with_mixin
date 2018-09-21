@@ -10,7 +10,7 @@ class EntertainmentPage extends Header {
         this.filterButtons = $$('button[id*=tagsFilter]');
         this.filterResults = $$('div.result');
         this.defaultComponent = $('div[class="theme-default component-base"]');
-        this.url = 'https://www.bellagio.com/en/entertainment.html'
+        this.url = 'https://www.bellagio.com/en/entertainment.html';
     }
     getDefaultComponentTitle() {
         return this.defaultComponent.$('span').getText();
