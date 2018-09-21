@@ -3,16 +3,16 @@ Feature: Bellagio resource Tests of restaurants service
     Background:
         Given I open home page 'https://www.bellagio.com/en.html'
 
-    # Scenario Outline: Check body header on a page
-    #     When I click on '<reference_on_the_header>' reference on header
-    #     Then I should see '<text>' text as a header of a body
-    #     And  results wrapper
+    Scenario Outline: Check body header on a page
+        When I click on '<reference_on_the_header>' reference on header
+        Then I should see '<text>' text as a header of a body
+        And  results wrapper
 
-    #     Examples:
-    #         | reference_on_the_header | text                 |
-    #         | RESTAURANTS             | RESTAURANTS          |
-    #         | HOTEL                   | HOTEL ROOMS & SUITES |
-    #         | ENTERTAINMENT           | ENTERTAINMENT        |
+        Examples:
+            | reference_on_the_header | text                 |
+            | RESTAURANTS             | RESTAURANTS          |
+            | HOTEL                   | HOTEL ROOMS & SUITES |
+            | ENTERTAINMENT           | ENTERTAINMENT        |
 
     Scenario Outline: Filter on restaurants page
         When I click on 'RESTAURANTS' reference on header
