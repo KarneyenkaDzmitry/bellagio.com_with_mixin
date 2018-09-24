@@ -42,7 +42,7 @@ gulp.task('report', () => {
     logger.info('Run  gulp, task - report');
     return gulp.src('', { read: false })
         .pipe(shell([
-            '.\\reports\\screenshots\\Bellagio.html'
+            '.\\reports\\Bellagio.html'
         ]));
 });
 
