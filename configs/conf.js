@@ -1,5 +1,6 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
+const reporter = require('cucumber-json-reporter-to-html');
 
 exports.config = {
     getPageTimeout: 60000,
@@ -35,6 +36,7 @@ exports.config = {
         logger.info('Get started!');
     },
     afterLaunch: () => {
+        reporter.create('./reports/report.json', './reports/Bellagio.html', 'The Best title of the world', 'DESCRIPTION');
         logger.info('Done');
     }
 };
