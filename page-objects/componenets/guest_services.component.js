@@ -22,13 +22,25 @@ class GuestServicesComponent extends GuestServicesMenu {
     }
 
     openGuestServicesDropdown() {
-        return this.guestServices.click();
-    }
-    goToReservationPage() {
         return browser.wait(ec.elementToBeClickable(this.guestServices), 5000)
             .then(() => this.guestServices.click())
-            .then(() => browser.wait(ec.elementToBeClickable(this.findReservation), 5000))
-            .then(() => this.findReservation.click());
+    }
+
+    openPageFromMenu(element) {
+        return browser.wait(ec.elementToBeClickable(element), 5000)
+            .then(() => element.click());
+    }
+
+    goToPageFromGuestServiceMenu(text) {
+        switch (text.toLowerCase()) {
+            case 'find reservation': return this.openPageFromMenu(this.findReservation);
+            case 'mobile check-in': return this.openPageFromMenu(this.mobileCheckIn);
+            case 'mobile check-out': return this.openPageFromMenu(this.mobileCheckOut);
+            case 'offers sing-up': return this.openPageFromMenu(this.offersSingUp);
+            case 'manage preferences': return this.openPageFromMenu(this.managePreferences);
+            case 'contact us': return this.openPageFromMenu(this.contactUs);
+            default: throw new Error('There is not the suitable menu', text);
+        }
     }
 }
 

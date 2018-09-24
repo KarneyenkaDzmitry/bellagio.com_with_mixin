@@ -38,15 +38,17 @@ Then(/^Only One choice option$/, async () => {
     expect(await page.filterResults.count()).to.be.equals(1);
 });
 
+When(/^choose the option '([^']*)'$/, async (string) => {
+    await page.goToPageFromGuestServiceMenu(string);
+  });
 
-When('I choose Room in field reservation', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When(/^I choose Room in field reservation$/, async () => {
+    page = await helper.get();
+    await page.chooseRoomReservation();
 });
 
-Then('I see that in the field', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then(/^I see selected '([^']*)' in the reservation type$/, async (text) => {
+    expect(await page.roomReservation.isSelected()).to.be.true;
 });
 
 Given(/^I choose search component$/, async () => {
