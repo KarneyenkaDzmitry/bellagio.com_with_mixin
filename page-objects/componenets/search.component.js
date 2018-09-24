@@ -21,5 +21,9 @@ class SearchComponenet {
     openSearchBox() {
         return this.search.click();
     }
+    
+    getPlaceholderText(){
+        return this.searchField.getAttribute('placeholder');
+    }
 }
 module.exports = SearchComponenet;

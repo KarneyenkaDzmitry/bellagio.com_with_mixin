@@ -25,15 +25,16 @@ Feature: Bellagio resource Tests of restaurants service
             | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
 
 # Scenario: Check reservatin features
-#     When I click on '<reference_on_the_header>' reference on header
+#     When I click on 'Guest Service' reference on header
+#     And choose the option 'find Reservation' 
 #     Then I should see '<text>' text as a header of a body
 #     When I choose Room in field reservation
 #     Then I see that in the field
 
-# Scenario: Search component
-#     Given I choose search component
-#     Then I see input field with text 'asdafa'
-#     And 'disabled' button with text 'Search'
+Scenario: Search component
+    Given I choose search component
+    Then I see input field with text 'Search restaurants, shows, more…'
+    And 'disabled' button with text 'SEARCH'
 
 # Scenario Outline: Search
 #     Given I choose search component

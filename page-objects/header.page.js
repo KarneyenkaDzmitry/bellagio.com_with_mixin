@@ -17,6 +17,7 @@ class Header extends mixin(hotelComponenet, restaurantsComponenet, searchCompone
         case 'hotel': return this.goToHotelPage();
         case 'entertainment': return this.goToEntertainmentPage();
         case 'restaurants': return this.goToRestaurantsPage();
+        case 'search' : return this.openSearchBox();
         default: return new Error('There is no the reference. Wrong parameter ', refer);
         }
     }

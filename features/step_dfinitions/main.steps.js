@@ -49,19 +49,19 @@ Then('I see that in the field', function () {
     return 'pending';
 });
 
-Given('I choose search component', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Given(/^I choose search component$/, async () => {
+    await page.chooseReference('search');
 });
 
-Then('I see input field with text {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then(/^I see input field with text '([^']*)'$/, async (text) => {
+    page = await helper.get();
+    expect(await page.searchField.isPresent()).to.be.true;
+    expect(await page.getPlaceholderText()).to.be.equals(text);
 });
 
-Then('{string} button with text {string}', function (string, string2) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then(/^'([^']*)' button with text '([^']*)'$/, async (option, text) => {
+    expect(await page.searchButton.isEnabled()).to.be.equals(option === 'disabled' ? false : true);
+    expect(await page.searchButton.getText()).to.be.equals(text)
 });
 
 When('I search for {string}', function (string) {
