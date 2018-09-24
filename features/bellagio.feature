@@ -44,11 +44,11 @@ Scenario Outline: Search has results
         | text      | result           |
         | du soleil | "O" BY CIRQUE DU SOLEIL® |
 
-# Scenario Outline: Search no result
-#     Given I choose search component
-#     When I search for '<text>'
-#     Then I see results contains '<result>' in the body
-#     Examples:
-#         | text    | result                                                                                                              |
-#         | dusolei | Sorry, your search for dusolei did not return any results. Please try different search terms or browse our sitemap. |
+Scenario Outline: Search no result
+    Given I choose search component
+    When I search for '<text>'
+    Then I see message '<result>' in the body of the page
+    Examples:
+        | text    | result                                                                                                              |
+        | dusolei | Sorry, your search for dusolei did not return any results. Please try different search terms or browse our sitemap. |
 

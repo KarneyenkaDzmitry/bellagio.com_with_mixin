@@ -8,7 +8,7 @@ class SearchPage extends Header {
         this.searchTitle = $('.site-search-header');
         this.resultsWrapper = $('#results-wrapper');
         this.searchResults = $('[class*=search-results]');
-        this.noResult = $('.no-result');
+        this.noResultMessage = $('div.no-result > p.ng-binding');
         // this.url = 'https://www.bellagio.com/en/search.html#/' + searchword;
     }
 

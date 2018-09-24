@@ -50,7 +50,7 @@ Then('I see that in the field', function () {
 });
 
 Given(/^I choose search component$/, async () => {
-    await page.chooseReference('search'); 
+    await page.chooseReference('search');
 });
 
 Then(/^I see input field with text '([^']*)'$/, async (text) => {
@@ -72,4 +72,10 @@ Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {
     await browser.refresh();
     page = await helper.get();
     expect((await page.getHeadersOfResults()).includes(expectedText)).to.be.true;
+});
+
+Then(/^I see message '([^']*)' in the body of the page$/, async (expectedMessage) => {
+    await browser.refresh();
+    page = await helper.get();
+    expect(await page.noResultMessage.getText()).to.be.equals(expectedMessage);
 });
