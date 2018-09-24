@@ -50,7 +50,7 @@ Then('I see that in the field', function () {
 });
 
 Given(/^I choose search component$/, async () => {
-    await page.chooseReference('search');
+    await page.chooseReference('search'); 
 });
 
 Then(/^I see input field with text '([^']*)'$/, async (text) => {
@@ -64,12 +64,12 @@ Then(/^'([^']*)' button with text '([^']*)'$/, async (option, text) => {
     expect(await page.searchButton.getText()).to.be.equals(text)
 });
 
-When('I search for {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When(/^I search for '([^']*)'$/, async (text) => {
+    await page.find(text);
 });
 
-Then('I see results contains {string} in the body', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {
+    await browser.refresh();
+    page = await helper.get();
+    expect((await page.getHeadersOfResults()).includes(expectedText)).to.be.true;
 });

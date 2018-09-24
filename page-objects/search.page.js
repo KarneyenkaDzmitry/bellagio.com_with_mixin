@@ -15,6 +15,12 @@ class SearchPage extends Header {
     getFirstResultTitle() {
         return this.searchResults.$('h2').getText();
     }
+
+    getHeadersOfResults() {
+        return this.searchResults.$$('h2')
+        .then((elements) => elements.map(element => element.getText()))
+        .then((elements) => Promise.all(elements));
+    }
 }
 const search = new SearchPage();
 module.exports = search;

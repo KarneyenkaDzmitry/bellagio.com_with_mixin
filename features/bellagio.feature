@@ -36,15 +36,15 @@ Scenario: Search component
     Then I see input field with text 'Search restaurants, shows, more…'
     And 'disabled' button with text 'SEARCH'
 
-# Scenario Outline: Search
-#     Given I choose search component
-#     When I search for '<text>'
-#     Then I see results contains '<result>' in the body
-#     Examples:
-#         | text      | result           |
-#         | du soleil | CIRQUE DU SOLEIL |
+Scenario Outline: Search has results
+    Given I choose search component
+    When I search for '<text>'
+    Then I see results contains '<result>' in the body
+    Examples:
+        | text      | result           |
+        | du soleil | "O" BY CIRQUE DU SOLEIL® |
 
-# Scenario Outline: Search no results
+# Scenario Outline: Search no result
 #     Given I choose search component
 #     When I search for '<text>'
 #     Then I see results contains '<result>' in the body
