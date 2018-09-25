@@ -10,7 +10,20 @@ const guestServiceComponenet = require('./componenets/guest_services.component.j
 const entertainmentComponenet = require('./componenets/entertainment.component.js');
 //const headerElements = 
 
-class Header extends mixin(hotelComponenet, restaurantsComponenet, searchComponenet, guestServiceComponenet, entertainmentComponenet) {
+class TopHeader extends mixin(searchComponenet,guestServiceComponenet) {
+    constructor() {
+        super();
+    }
+}
+
+class LowHeader extends mixin(TopHeader, hotelComponenet, restaurantsComponenet, entertainmentComponenet) {
+    constructor() {
+        super();
+    }
+}
+
+
+class Header extends LowHeader {
     constructor() {
         super();
     }
