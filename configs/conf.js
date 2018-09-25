@@ -13,7 +13,6 @@ exports.config = {
         'no-source': true,
         "format": 'json:./reports/report.json',
         "ignoreUncaughtExceptions": true
-        //   tags: ['~@wip', '~@manual']
     },
     specs: ['../features/*.feature'],
     logLevel: 'ERROR',
@@ -36,7 +35,7 @@ exports.config = {
         logger.info('Get started!');
     },
     afterLaunch: () => {
-        reporter.create('./reports/report.json', './reports/Bellagio.html', 'The Best title of the world', 'DESCRIPTION');
+        reporter.create('./reports/report.json', './reports/Bellagio.html', 'Bellagio.com UI-Tests', 'Tests based on: cucumber with protractor approach ');
         logger.info('Done');
     }
 };

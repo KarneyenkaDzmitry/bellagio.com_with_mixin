@@ -6,7 +6,7 @@ Feature: Bellagio resource Tests of restaurants service
     Scenario Outline: Check body header on a page
         When I click on '<reference_on_the_header>' reference on header
         Then I should see '<text>' text as a header of a body
-        And  results wrapper
+        And  results wrapper should be present
 
         Examples:
             | reference_on_the_header | text                 |

@@ -20,7 +20,7 @@ Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText)
     expect(await page.titleH1.getText()).to.be.equals(expectedText);
 });
 
-Then(/^results wrapper$/, async () => {
+Then(/^results wrapper should be present$/, async () => {
     expect(await page.results.isPresent()).to.be.true;
 });
 
