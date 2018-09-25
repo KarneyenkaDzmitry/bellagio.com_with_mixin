@@ -1,14 +1,17 @@
 'use strict';
 
-function clickOnReferencesOrButtons(elements, text) {
-    if (isPosition(text)) {
-        return elements[text.substring(1, text.length)].click();
-    } else {
-        return elements.map(element => element.getText())
-            .then((elements) => Promise.all(elements))
-            .then((results) => results.findIndex(elem => elem === text))
-            .thex((index) => clickOnElement(elements[index]));
-    }
+async function clickOnReferencesOrButtons(elements, text) {
+    const elems = elements.map(element => element.getText());
+    return Promise.all(elems)
+        .then((results) => results.findIndex(elem => elem.toLowerCase() === (text.toLowerCase())))
+        .then((index) => {
+            if (index > - 1) {
+                return clickOnElement(elements[index])
+                    .then(() => true);
+            } else {
+                return false;
+            }
+        });
 }
 
 function clickOnElement(element) {
@@ -20,4 +23,4 @@ function isPosition(text) {
     return text.includes('№');
 }
 
-module.exports = {clickOnReferencesOrButtons, clickOnElement}
+module.exports = { clickOnReferencesOrButtons, clickOnElement }
