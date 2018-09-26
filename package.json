@@ -7,7 +7,7 @@
     "wd-up": "webdriver-manager update",
     "wd-st": "webdriver-manager start",
     "test": "protractor ./configs/conf.js",
-    "posttest": ".\\reports\\Bellagio.html",
+    "report": ".\\reports\\Bellagio.html",
     "start": "node ./node_modules/gulp/bin/gulp.js",
     "lint": "eslint ./ --fix",
     "gulp": "node ./node_modules/gulp/bin/gulp.js",

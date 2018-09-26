@@ -12,7 +12,7 @@ Feature: Bellagio resource Tests of restaurants service
             | reference_on_the_header | text                 |
             | RESTAURANTS             | RESTAURANTS          |
             | HOTEL                   | HOTEL ROOMS & SUITES |
-            | ENTERTAINMENT           | ENTERTAINMENT        |
+            | ENTERTAINMENT          | ENTERTAINMENT        |
 
     Scenario Outline: Filter on restaurants page
         When I click on 'RESTAURANTS' reference on header

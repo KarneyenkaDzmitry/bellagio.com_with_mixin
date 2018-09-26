@@ -16,7 +16,7 @@ exports.config = {
     },
     specs: ['../features/*.feature'],
     logLevel: 'ERROR',
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    //seleniumAddress: 'http://localhost:4444/wd/hub', if seleniumAddress nas no value, null or undefined - server will be run automaticaly
     allScriptsTimeout: 500000,
     onPrepare: () => {
         logger.info('Browser starts in maximize size for running tests');
@@ -35,7 +35,18 @@ exports.config = {
         logger.info('Get started!');
     },
     afterLaunch: () => {
-        reporter.create('./reports/report.json', './reports/Bellagio.html', 'Bellagio.com UI-Tests', 'Tests based on: cucumber with protractor approach ');
+        
         logger.info('Done');
+    },
+    onComplete: () => {
+        reporter.create('./reports/report.json', './reports/Bellagio.html', 'Bellagio.com UI-Tests', 'Tests based on: cucumber with protractor approach ');
     }
+    /**
+       * A callback function called once tests are finished. onComplete can
+       * optionally return a promise, which Protractor will wait for before
+       * shutting down webdriver.
+       *
+       * At this point, tests will be done but global objects will still be
+       * available.
+       */
 };
