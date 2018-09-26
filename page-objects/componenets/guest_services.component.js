@@ -19,6 +19,8 @@ class GuestServicesComponent extends GuestServicesMenu {
     constructor() {
         super();
         this.guestServices = element(by.css('.nav-services-btn'));
+        this['guest services menu'] = element(by.css('#unsignedIn-guest-menu'));
+        this['guest services'] = element(by.css('.nav-services-btn'));
     }
 
     openGuestServicesDropdown() {
