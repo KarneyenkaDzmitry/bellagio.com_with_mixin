@@ -5,8 +5,8 @@ const Header = require('./header.page.js');
 class EntertainmentPage extends Header {
     constructor() {
         super();
-        this.titleH1 = $('h1');
-        this.results = $('#results-wrapper');
+        this['body header h1'] = $('h1');
+        this['body results'] = $('#results-wrapper');
         this.filterButtons = $$('button[id*=tagsFilter]');
         this.filterResults = $$('div.result');
         this.defaultComponent = $('div[class="theme-default component-base"]');

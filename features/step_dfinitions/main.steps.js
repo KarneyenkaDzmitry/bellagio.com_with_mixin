@@ -8,7 +8,7 @@ let page;
 
 Given(/^I open home page '([^']*)'$/, async (host) => {
     await browser.get(host);
-    page = await helper.get();
+    //page = await helper.get();
 });
 
 When(/^I click on '([^']*)' reference on header$/, async (refer) => {
@@ -17,12 +17,12 @@ When(/^I click on '([^']*)' reference on header$/, async (refer) => {
 });
 
 Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText) => {
-    page = await helper.get();
-    expect(await page.titleH1.getText()).to.be.equals(expectedText);
+    //page = await helper.get();
+    expect(await (await helper.getNeededElement('body header h1')).getText()).to.be.equals(expectedText);
 });
 
 Then(/^results wrapper should be present$/, async () => {
-    expect(await page.results.isPresent()).to.be.true;
+    expect(await (await helper.getNeededElement('body results')).isPresent()).to.be.true;
 });
 
 When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/, async (cousine, price, meal) => {

@@ -12,7 +12,7 @@ Feature: Bellagio resource Tests of restaurants service
             | reference_on_the_header | text                 |
             | RESTAURANTS             | RESTAURANTS          |
             | HOTEL                   | HOTEL ROOMS & SUITES |
-            | ENTERTAINMENT          | ENTERTAINMENT        |
+            | ENTERTAINMENT           | ENTERTAINMENT        |
 
     Scenario Outline: Filter on restaurants page
         When I click on 'RESTAURANTS' reference on header
@@ -24,31 +24,31 @@ Feature: Bellagio resource Tests of restaurants service
             | Cousine | Price | Meal                 | Result                 |
             | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
 
-Scenario: Check reservatin features
-    When I click on 'guest services' reference on header
-    And choose the option 'find reservation' 
-    Then I should see 'Find Your Reservation' text as a header of a body
-    When I choose Room in field reservation
-    Then I see selected 'Room' in the reservation type
+    Scenario: Check reservatin features
+        When I click on 'guest services' reference on header
+        And choose the option 'find reservation'
+        Then I should see 'Find Your Reservation' text as a header of a body
+        When I choose Room in field reservation
+        Then I see selected 'Room' in the reservation type
 
-Scenario: Search component
-    Given I choose search component
-    Then I see input field with text 'Search restaurants, shows, more…'
-    And 'disabled' button with text 'SEARCH'
+    Scenario: Search component
+        Given I choose search component
+        Then I see input field with text 'Search restaurants, shows, more…'
+        And 'disabled' button with text 'SEARCH'
 
-Scenario Outline: Search has results
-    Given I choose search component
-    When I search for '<text>'
-    Then I see results contains '<result>' in the body
-    Examples:
-        | text      | result           |
-        | du soleil | "O" BY CIRQUE DU SOLEIL® |
+    Scenario Outline: Search has results
+        Given I choose search component
+        When I search for '<text>'
+        Then I see results contains '<result>' in the body
+        Examples:
+            | text      | result                   |
+            | du soleil | "O" BY CIRQUE DU SOLEIL® |
 
-Scenario Outline: Search no result
-    Given I choose search component
-    When I search for '<text>'
-    Then I see message '<result>' in the body of the page
-    Examples:
-        | text    | result                                                                                                              |
-        | dusolei | Sorry, your search for dusolei did not return any results. Please try different search terms or browse our sitemap. |
+    Scenario Outline: Search no result
+        Given I choose search component
+        When I search for '<text>'
+        Then I see message '<result>' in the body of the page
+        Examples:
+            | text    | result                                                                                                              |
+            | dusolei | Sorry, your search for dusolei did not return any results. Please try different search terms or browse our sitemap. |
 
