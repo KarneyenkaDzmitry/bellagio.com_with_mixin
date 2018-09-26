@@ -2,7 +2,7 @@
 
 class HotelComponent {
     constructor() {
-        this.hotel = element(by.css('a[class*=hotel]'));
+        this['hotel'] = element(by.css('a[class*=hotel]'));
     }
 
     goToHotelPage() {

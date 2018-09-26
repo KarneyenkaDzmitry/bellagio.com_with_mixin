@@ -3,7 +3,6 @@
 const { When, Then, Given, setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(20 * 5000);
 const helper = require('../../page-objects/utils/page.helper.js');
-const additionalHelper = require('../../page-objects/utils/additional.helper');
 const { expect } = require('chai');
 let page;
 
@@ -13,7 +12,7 @@ Given(/^I open home page '([^']*)'$/, async (host) => {
 });
 
 When(/^I click on '([^']*)' reference on header$/, async (refer) => {
-    return (await additionalHelper.getNeededElement(refer)).click();
+    return (await helper.getNeededElement(refer)).click();
     //await page.chooseReference(refer);
 });
 
@@ -41,7 +40,7 @@ Then(/^Only One choice option$/, async () => {
 });
 
 When(/^choose the option '([^']*)'$/, async (string) => {
-    return await (await additionalHelper.getNeededElement(string, await additionalHelper.getNeededElement('guest services menu'))).click();
+    return await (await helper.getNeededElement(string, await helper.getNeededElement('guest services menu'))).click();
     //await page.goToPageFromGuestServiceMenu(string);
   });
 

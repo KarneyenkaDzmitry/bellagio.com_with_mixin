@@ -2,7 +2,7 @@
 
 class RestaurantsComponenet {
     constructor() {
-        this.restaurants = $('a[class*=restaurants]');
+        this['restaurants'] = $('a[class*=restaurants]');
     }
 
     goToRestaurantsPage() {

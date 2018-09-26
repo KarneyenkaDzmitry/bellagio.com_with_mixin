@@ -1,6 +1,6 @@
 'use strict';
 
-const additionalHelper = require('./utils/additional.helper');
+const additionalHelper = require('./utils/page.helper');
 
 const mixin = require('./utils/mixin.js');
 const hotelComponenet = require('./componenets/hotel.component.js');
