@@ -29,7 +29,6 @@ When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/
 
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
     const results = await page.getListOfRestaurants();
-    //console.log(results);
     expect(results.indexOf(shouldContainsText) > -1).to.be.true;
     // const resultsHeaders =await  helper.getNeededElement('body results headers');
     // const headersText = await helper.getText(resultsHeaders);
@@ -43,13 +42,10 @@ Then(/^Only One choice option$/, async () => {
 
 When(/^choose the option '([^']*)'$/, async (string) => {
     return (await helper.getNeededElement(string, await helper.getNeededElement('guest services menu'))).click();
-    //await page.goToPageFromGuestServiceMenu(string);
   });
 
 When(/^I choose Room in field reservation$/, async () => {
     return (await helper.getNeededElement('room option')).click();
-    // page = await helper.get();
-    // await page.chooseRoomReservation();
 });
 
 Then(/^I see selected '([^']*)' in the reservation type$/, async (text) => {
@@ -72,7 +68,7 @@ Then(/^'([^']*)' button with text '([^']*)'$/, async (option, text) => {
 
 When(/^I search for '([^']*)'$/, async (text) => {
     page = await helper.get();
-    await page.find(text);
+    return await page.find(text);
 });
 
 Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {

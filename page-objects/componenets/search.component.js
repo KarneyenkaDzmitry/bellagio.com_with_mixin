@@ -11,8 +11,8 @@ class SearchComponenet {
 
     find(text) {
         return this['search component field'].sendKeys(text)
-            .then(() => browser.wait(ec.elementToBeClickable(['search component button']), 5000))
-            .then(() => ['search component button'].click())
+            .then(() => browser.wait(ec.elementToBeClickable(this['search component button']), 5000))
+            .then(() => this['search component button'].click())
             .catch(error => {
                 return error;
             });
