@@ -41,7 +41,8 @@ Then(/^Only One choice option$/, async () => {
 });
 
 When(/^choose the option '([^']*)'$/, async (string) => {
-    await page.goToPageFromGuestServiceMenu(string);
+    return await (await additionalHelper.getNeededElement(string, await additionalHelper.getNeededElement('guest services menu'))).click();
+    //await page.goToPageFromGuestServiceMenu(string);
   });
 
 When(/^I choose Room in field reservation$/, async () => {

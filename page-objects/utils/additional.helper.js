@@ -22,7 +22,8 @@ function getNeededElementByName([name, elements]) {
         } else {
             const elems = elements.map(element => element.getText());
             return Promise.all(elems)
-                .then((results) => results.find(elem => elem.toLowerCase() === (name.toLowerCase())))
+                .then((results) => results.findIndex(elem => elem.toLowerCase() === (name.toLowerCase())))
+                .then((index) => elements[index])
         }
     });
 }
