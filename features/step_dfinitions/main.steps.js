@@ -7,7 +7,7 @@ const { expect } = require('chai');
 let page;
 
 Given(/^I open home page '([^']*)'$/, async (host) => {
-    await browser.get(host);
+    return await browser.get(host);
 });
 
 When(/^I click on '([^']*)' reference on header$/, async (refer) => {
@@ -15,7 +15,6 @@ When(/^I click on '([^']*)' reference on header$/, async (refer) => {
 });
 
 Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText) => {
-    //await browser.sleep(2000);
     expect(await (await helper.getNeededElement('body header h1')).getText()).to.be.equals(expectedText);
 });
 
@@ -25,17 +24,16 @@ Then(/^results wrapper should be present$/, async () => {
 
 When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/, async (cousine, price, meal) => {
     page = await helper.get();
-    await page.filter(cousine, price, meal);
+    return await page.filter(cousine, price, meal);
 });
 
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
-    //const resultsHeaders =await  helper.getNeededElement('body results headers');
-    //const headersText = await helper.getText(resultsHeaders);
-
     const results = await page.getListOfRestaurants();
-    //console.log(headersText);
-    console.log(results);
+    //console.log(results);
     expect(results.indexOf(shouldContainsText) > -1).to.be.true;
+    // const resultsHeaders =await  helper.getNeededElement('body results headers');
+    // const headersText = await helper.getText(resultsHeaders);
+    // console.log(headersText);
 });
 
 Then(/^Only One choice option$/, async () => {
@@ -44,13 +42,14 @@ Then(/^Only One choice option$/, async () => {
 });
 
 When(/^choose the option '([^']*)'$/, async (string) => {
-    return await (await helper.getNeededElement(string, await helper.getNeededElement('guest services menu'))).click();
+    return (await helper.getNeededElement(string, await helper.getNeededElement('guest services menu'))).click();
     //await page.goToPageFromGuestServiceMenu(string);
   });
 
 When(/^I choose Room in field reservation$/, async () => {
-    page = await helper.get();
-    await page.chooseRoomReservation();
+    return (await helper.getNeededElement('room option')).click();
+    // page = await helper.get();
+    // await page.chooseRoomReservation();
 });
 
 Then(/^I see selected '([^']*)' in the reservation type$/, async (text) => {
@@ -58,21 +57,21 @@ Then(/^I see selected '([^']*)' in the reservation type$/, async (text) => {
 });
 
 Given(/^I choose search component$/, async () => {
-    await page.chooseReference('search');
+    return await (await helper.getNeededElement('search component')).click();
 });
 
 Then(/^I see input field with text '([^']*)'$/, async (text) => {
-    page = await helper.get();
-    expect(await page.searchField.isPresent()).to.be.true;
-    expect(await page.getPlaceholderText()).to.be.equals(text);
+    expect(await (await helper.getNeededElement('search component field')).isPresent()).to.be.true;
+    expect(await (await helper.getNeededElement('search component field')).getAttribute('placeholder')).to.be.equals(text);
 });
 
 Then(/^'([^']*)' button with text '([^']*)'$/, async (option, text) => {
-    expect(await page.searchButton.isEnabled()).to.be.equals(option === 'disabled' ? false : true);
-    expect(await page.searchButton.getText()).to.be.equals(text)
+    expect(await (await helper.getNeededElement('search component button')).isEnabled()).to.be.equals(option === 'disabled' ? false : true);
+    expect(await (await helper.getNeededElement('search component button')).getText()).to.be.equals(text);
 });
 
 When(/^I search for '([^']*)'$/, async (text) => {
+    page = await helper.get();
     await page.find(text);
 });
 

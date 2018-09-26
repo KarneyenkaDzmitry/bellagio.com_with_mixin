@@ -9,7 +9,7 @@ class Restaurants extends Header {
         this['body'] = $('#results-wrapper');
         this.filterButtons = element.all(by.css('button[id*=tagsFilter]'));
         this['body results array'] = $$('div.result');
-        this['body results headers'] = element.all(by.css('div.result h3'));
+        this['body results headers'] = element.all(by.css('div.result h3'));//body results headers
         this.url = 'https://www.bellagio.com/en/restaurants.html';
     }
 
