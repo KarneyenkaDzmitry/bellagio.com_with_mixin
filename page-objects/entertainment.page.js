@@ -6,7 +6,7 @@ class EntertainmentPage extends Header {
     constructor() {
         super();
         this['body header h1'] = $('h1');
-        this['body results'] = $('#results-wrapper');
+        this['body'] = $('#results-wrapper');
         this.filterButtons = $$('button[id*=tagsFilter]');
         this.filterResults = $$('div.result');
         this.defaultComponent = $('div[class="theme-default component-base"]');

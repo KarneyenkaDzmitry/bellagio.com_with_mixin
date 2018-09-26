@@ -8,21 +8,19 @@ let page;
 
 Given(/^I open home page '([^']*)'$/, async (host) => {
     await browser.get(host);
-    //page = await helper.get();
 });
 
 When(/^I click on '([^']*)' reference on header$/, async (refer) => {
     return (await helper.getNeededElement(refer)).click();
-    //await page.chooseReference(refer);
 });
 
 Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText) => {
-    //page = await helper.get();
+    //await browser.sleep(2000);
     expect(await (await helper.getNeededElement('body header h1')).getText()).to.be.equals(expectedText);
 });
 
 Then(/^results wrapper should be present$/, async () => {
-    expect(await (await helper.getNeededElement('body results')).isPresent()).to.be.true;
+    expect(await (await helper.getNeededElement('body')).isPresent()).to.be.true;
 });
 
 When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/, async (cousine, price, meal) => {
@@ -31,12 +29,18 @@ When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/
 });
 
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
+    //const resultsHeaders =await  helper.getNeededElement('body results headers');
+    //const headersText = await helper.getText(resultsHeaders);
+
     const results = await page.getListOfRestaurants();
-    expect(await results.indexOf(shouldContainsText) > -1).to.be.true;
+    //console.log(headersText);
+    console.log(results);
+    expect(results.indexOf(shouldContainsText) > -1).to.be.true;
 });
 
 Then(/^Only One choice option$/, async () => {
-    expect(await page.filterResults.count()).to.be.equals(1);
+    const results = await page.getListOfRestaurants();
+    expect(results.length).to.be.equals(1);
 });
 
 When(/^choose the option '([^']*)'$/, async (string) => {
@@ -50,7 +54,7 @@ When(/^I choose Room in field reservation$/, async () => {
 });
 
 Then(/^I see selected '([^']*)' in the reservation type$/, async (text) => {
-    expect(await page.roomReservation.isSelected()).to.be.true;
+    expect(await (await helper.getNeededElement('room option')).isSelected()).to.be.true;
 });
 
 Given(/^I choose search component$/, async () => {

@@ -6,19 +6,19 @@ class SearchPage extends Header {
     constructor() {
         super();
         this['body header h1'] = $('.site-search-header');
-        this['body results'] = $('#results-wrapper');
+        this['body'] = $('#results-wrapper');
+        this['body results headers'] = element.all(by.css('#results-wrapper h2'));
         this.searchResults = $('[class*=search-results]');
         this.noResultMessage = $('div.no-result > p.ng-binding');
         //this.url = 'https://www.bellagio.com/en/search.html#/'// + searchword;
     }
 
     getFirstResultTitle() {
-        return this['body results'].$('h2').getText();
+        return this['body results headers'].$('h2').getText();
     }
 
     getHeadersOfResults() {
-        return this['body results'].$$('h2')
-        .then((elements) => elements.map(element => element.getText()))
+        return this['body results headers'].map(element => element.getText())
         .then((elements) => Promise.all(elements));
     }
 }

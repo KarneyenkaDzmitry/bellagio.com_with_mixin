@@ -6,14 +6,15 @@ class Restaurants extends Header {
     constructor() {
         super();
         this['body header h1'] = $('h1');
-        this['body results'] = $('#results-wrapper');
+        this['body'] = $('#results-wrapper');
         this.filterButtons = element.all(by.css('button[id*=tagsFilter]'));
-        this.filterResults = $$('div.result');
+        this['body results array'] = $$('div.result');
+        this['body results headers'] = element.all(by.css('div.result h3'));
         this.url = 'https://www.bellagio.com/en/restaurants.html';
     }
 
     filter(...options) {
-         return browser.wait(ec.presenceOf(this.filterButtons), 10000)
+        return browser.wait(ec.presenceOf(this.filterButtons), 10000)
             .then(() => options.forEach((option, ind) => {
                 if (option !== 'Clear') {
                     const opt = `//a[text()="${options[ind]}"][@class]`;
@@ -34,13 +35,14 @@ class Restaurants extends Header {
                         .then((element) => {
                             browser.wait(ec.elementToBeClickable(element), 5000); return element;
                         })
-                        .then((element) =>  element.click());
+                        .then((element) => element.click());
                 }
             }));
     }
 
     getListOfRestaurants() {
-        return this.filterResults.$$('h3').map((elem) => elem.getText());
+        return this['body results headers'].map((elem) => elem.getText())
+            .then(results => Promise.all(results));
     }
 }
 

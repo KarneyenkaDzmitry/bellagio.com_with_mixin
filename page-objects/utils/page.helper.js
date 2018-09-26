@@ -23,12 +23,12 @@ function getNeededElement(...args) {
 
 function getNeededElementByName([name, elements]) {
     name = name.toLowerCase();
-    return get().then((page) => {
+    return get().then(page => {
         if (!Array.isArray(elements)) {
             if (page[name] !== undefined) {
                 return page[name];
             } else {
-                throw new Error(`There is not the [${name}] element on the current page.`);
+                throw new Error(`There is no the [${name}] element on the current page.`);
             }
         } else {
             const elems = elements.map(element => element.getText());
@@ -66,4 +66,14 @@ function clickOnElement(element) {
         .then(() => element.click());
 }
 
-module.exports = {  clickOnReferencesOrButtons, clickOnElement, getNeededElement, get }
+function getText(elements) {
+    if (Array.isArray(elements)) {
+        const results = elements.map(element => element.getText());
+        return Promise.all(results);
+    } else {
+        return element.getText()
+        .then((text)=> text);
+    }
+}
+
+module.exports = {  clickOnReferencesOrButtons, clickOnElement, getNeededElement, get, getText }
