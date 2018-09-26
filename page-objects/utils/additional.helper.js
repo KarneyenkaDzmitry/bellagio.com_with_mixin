@@ -12,25 +12,26 @@ function getNeededElement(...args) {
 }
 
 function getNeededElementByName([name, elements]) {
-    const page = helper.get();
-    if (Array.isArray(elements)) {
-        if (page.name !== undefined) {
-            return page.name;
+    return helper.get().then((page) => {
+        if (!Array.isArray(elements)) {
+            if (page[name] !== undefined) {
+                return page[name];
+            } else {
+                throw new Error(`There is not the [${name}] element on the current page.`);
+            }
         } else {
-            throw new Error(`There is not the [${name}] element on the current page.`);
+            const elems = elements.map(element => element.getText());
+            return Promise.all(elems)
+                .then((results) => results.find(elem => elem.toLowerCase() === (name.toLowerCase())))
         }
-    } else {
-        const elems = elements.map(element => element.getText());
-        return Promise.all(elems)
-            .then((results) => results.find(elem => elem.toLowerCase() === (name.toLowerCase())))
-    }
+    });
 }
 
 function getNeededElementByNumber([number, elements]) {
     if (Array.isArray(elements)) {
         return elements[Number.parseInt(number.substring(1, number.length))];
     } else {
-            throw new Error('Were Passed wrong parameters. The method takes [#numberOfElement, arrayOfWebElements].');
+        throw new Error('Were Passed wrong parameters. The method takes [#numberOfElement, arrayOfWebElements].');
     }
 }
 

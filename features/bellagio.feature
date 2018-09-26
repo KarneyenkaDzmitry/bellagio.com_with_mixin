@@ -25,7 +25,7 @@ Feature: Bellagio resource Tests of restaurants service
     #         | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
 
 Scenario: Check reservatin features
-    When I click on 'Guest Services' reference on header
+    When I click on 'guest services' reference on header
     And choose the option 'find reservation' 
     Then I should see 'Find Your Reservation' text as a header of a body
     When I choose Room in field reservation

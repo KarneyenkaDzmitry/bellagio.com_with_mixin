@@ -3,6 +3,7 @@
 const { When, Then, Given, setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(20 * 5000);
 const helper = require('../../page-objects/utils/page.helper.js');
+const additionalHelper = require('../../page-objects/utils/additional.helper');
 const { expect } = require('chai');
 let page;
 
@@ -12,7 +13,8 @@ Given(/^I open home page '([^']*)'$/, async (host) => {
 });
 
 When(/^I click on '([^']*)' reference on header$/, async (refer) => {
-    await page.chooseReference(refer);
+    return (await additionalHelper.getNeededElement(refer)).click();
+    //await page.chooseReference(refer);
 });
 
 Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText) => {
