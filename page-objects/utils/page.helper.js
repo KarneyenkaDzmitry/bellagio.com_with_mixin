@@ -83,9 +83,7 @@ function getText(elements) {
 }
 
 function filter(elements, ...options) {
-    //console.log(`elements.length [${elements.length}] === options.length [${options.length}]`);
     if (elements.length === options.length) {
-        console.log(`elements.length [${elements.length}] === options.length [${options.length}]`);
         return browser.wait(ec.presenceOf(...elements), 10000)
             .then(() => options.forEach((option, ind) => {
                 if (option !== 'Clear') {
@@ -115,5 +113,9 @@ function filter(elements, ...options) {
         throw new Error('There are no equals an amount of elements ');
     }
 }
+
+// find() {
+
+// }
 
 module.exports = { clickOnReferencesOrButtons, clickOnElement, getNeededElement, get, getText, filter }

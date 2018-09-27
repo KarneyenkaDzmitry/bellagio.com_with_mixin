@@ -9,7 +9,7 @@ class SearchPage extends Header {
         this['body'] = $('#results-wrapper');
         this['body results headers'] = element.all(by.css('#results-wrapper h2'));
         this.searchResults = $('[class*=search-results]');
-        this.noResultMessage = $('div.no-result > p.ng-binding');
+        this['body no result message'] = $('div.no-result > p.ng-binding');
         //this.url = 'https://www.bellagio.com/en/search.html#/'// + searchword;
     }
 

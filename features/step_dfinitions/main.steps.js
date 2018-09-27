@@ -68,13 +68,10 @@ When(/^I search for '([^']*)'$/, async (text) => {
 
 Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {
     await browser.refresh();
-    page = await helper.get();
-    
-    expect((await page.getHeadersOfResults()).includes(expectedText)).to.be.true;
+    expect((await helper.getText(await helper.getNeededElement('body results headers'))).includes(expectedText)).to.be.true;
 });
 
 Then(/^I see message '([^']*)' in the body of the page$/, async (expectedMessage) => {
     await browser.refresh();
-    page = await helper.get();
-    expect(await page.noResultMessage.getText()).to.be.equals(expectedMessage);
+    return expect(await helper.getText(await helper.getNeededElement('body no result message'))).to.be.equals(expectedMessage);
 });
