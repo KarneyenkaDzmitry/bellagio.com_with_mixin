@@ -30,6 +30,7 @@ When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
     const results = await page.getListOfRestaurants();
     expect(results.indexOf(shouldContainsText) > -1).to.be.true;
+    
     // const resultsHeaders =await  helper.getNeededElement('body results headers');
     // const headersText = await helper.getText(resultsHeaders);
     // console.log(headersText);
