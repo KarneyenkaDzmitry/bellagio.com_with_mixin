@@ -23,8 +23,8 @@ Then(/^results wrapper should be present$/, async () => {
 });
 
 When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/, async (cousine, price, meal) => {
-    page = await helper.get();
-    return await page.filter(cousine, price, meal);
+    const elementsButtons = await helper.getNeededElement('body filter buttons');
+    return await helper.filter(elementsButtons, cousine, price, meal);
 });
 
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
@@ -69,6 +69,7 @@ When(/^I search for '([^']*)'$/, async (text) => {
 Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {
     await browser.refresh();
     page = await helper.get();
+    
     expect((await page.getHeadersOfResults()).includes(expectedText)).to.be.true;
 });
 
