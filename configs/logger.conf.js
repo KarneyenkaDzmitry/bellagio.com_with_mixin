@@ -8,7 +8,7 @@ const myFormat = printf(info => {
 });
 
 const logger = createLogger({
-    level: 'info',
+    level: 'debug',
     format: combine(
         label({ label: 'bellagio.com' }),
         timestamp({
