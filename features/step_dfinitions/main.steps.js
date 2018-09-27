@@ -15,7 +15,7 @@ When(/^I click on '([^']*)' reference on header$/, async (refer) => {
 });
 
 Then(/^I should see '([^']*)' text as a header of a body$/, async (expectedText) => {
-    expect(await (await helper.getNeededElement('body header h1')).getText()).to.be.equals(expectedText);
+    return expect(await helper.getText(await helper.getNeededElement('body header h1'))).to.be.equals(expectedText);
 });
 
 Then(/^results wrapper should be present$/, async () => {
@@ -28,17 +28,11 @@ When(/^choose options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/
 });
 
 Then(/^I see '([^']*)' in results$/, async (shouldContainsText) => {
-    const results = await page.getListOfRestaurants();
-    expect(results.indexOf(shouldContainsText) > -1).to.be.true;
-    
-    // const resultsHeaders =await  helper.getNeededElement('body results headers');
-    // const headersText = await helper.getText(resultsHeaders);
-    // console.log(headersText);
+    return expect((await helper.getText(await  helper.getNeededElement('body results headers'))).indexOf(shouldContainsText) > -1).to.be.true;
 });
 
 Then(/^Only One choice option$/, async () => {
-    const results = await page.getListOfRestaurants();
-    expect(results.length).to.be.equals(1);
+    return expect((await helper.getText(await  helper.getNeededElement('body results headers'))).length).to.be.equals(1);
 });
 
 When(/^choose the option '([^']*)'$/, async (string) => {

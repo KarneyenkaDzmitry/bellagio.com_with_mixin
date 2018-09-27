@@ -7,6 +7,7 @@ class Restaurants extends Header {
         super();
         this['body header h1'] = $('h1');
         this['body'] = $('#results-wrapper');
+        this['body filter buttons'] = element.all(by.css('button[id*=tagsFilter]'));
         this.filterButtons = element.all(by.css('button[id*=tagsFilter]'));
         this['body results array'] = $$('div.result');
         this['body results headers'] = element.all(by.css('div.result h3'));//body results headers

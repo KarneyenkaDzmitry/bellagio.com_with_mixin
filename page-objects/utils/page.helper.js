@@ -3,14 +3,16 @@
 function get() {
     return browser.getCurrentUrl()
         .then((currentUrl) => {
-            const [, appenderUrl] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*)$/.exec(currentUrl);
+            const [, appenderUrl,] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*html)(#.*)?$/.exec(currentUrl);
+            //console.log(`Current URL [${currentUrl}], and appender Url [${appenderUrl}]`);
             switch (appenderUrl) {
                 case 'en.html': return require('../home.page');
                 case 'en/hotel.html': return require('../hotel.page');
                 case 'en/entertainment.html': return require('../entertainment.page');
                 case 'en/restaurants.html': return require('../restaurants.page');
                 case 'en/itineraries/find-reservation.html': return require('../reservation.page');
-                default: return appenderUrl.includes('search.html') ? require('../search.page') : new Error('Wrong page');
+                case 'en/search.html': return require('../search.page')
+                default: throw new Error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
             }
         });
 }
@@ -20,6 +22,7 @@ function get() {
  *  finds and returns needed WebElement
  */
 function getNeededElement(...args) {
+    //console.log(`ARGS: [${args}]`);
     return args[0].includes('#') ? getNeededElementByNumber(args) : getNeededElementByName(args);
 }
 
@@ -30,7 +33,7 @@ function getNeededElementByName([name, elements]) {
             if (page[name] !== undefined) {
                 return page[name];
             } else {
-                console.log(page.url);
+                //console.log(page.url);
                 throw new Error(`There is no the [${name}] element on the current page.`);
             }
         } else {
@@ -74,8 +77,16 @@ function getText(elements) {
         const results = elements.map(element => element.getText());
         return Promise.all(results);
     } else {
-        return element.getText()
+        return elements.getText()
             .then((text) => text);
+    }
+}
+
+function filter([elements, ...options]) {
+    if (elements.length === options.length) {
+
+    } else {
+        throw new Error('There should be the same amount of  ');
     }
 }
 
