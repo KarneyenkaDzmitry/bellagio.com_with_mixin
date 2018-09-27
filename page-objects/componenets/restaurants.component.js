@@ -2,11 +2,7 @@
 
 class RestaurantsComponenet {
     constructor() {
-        this['restaurants'] = $('a[class*=restaurants]');
-    }
-
-    goToRestaurantsPage() {
-        return this.restaurants.click();
+        this['restaurants'] = element(by.css('a[class*=restaurants]'));
     }
 }
 module.exports = RestaurantsComponenet;

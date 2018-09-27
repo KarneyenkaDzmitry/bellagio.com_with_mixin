@@ -6,8 +6,8 @@ class HotelPage extends Header {
     constructor() {
         super();
         this['body header h1'] = element(by.css('*[class*=title] h1'));
-        this['body'] = $('#results-wrapper');
-        this.url = 'https://www.bellagio.com/en/hotel.html';
+        this['body'] = element(by.css('#results-wrapper'));
+        this['path'] = 'en/hotel.html';
     }
 }
 

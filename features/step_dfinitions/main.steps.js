@@ -4,7 +4,6 @@ const { When, Then, Given, setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(20 * 5000);
 const helper = require('../../page-objects/utils/page.helper.js');
 const { expect } = require('chai');
-let page;
 
 Given(/^I open home page '([^']*)'$/, async (host) => {
     return await browser.get(host);
@@ -62,8 +61,7 @@ Then(/^'([^']*)' button with text '([^']*)'$/, async (option, text) => {
 });
 
 When(/^I search for '([^']*)'$/, async (text) => {
-    page = await helper.get();
-    return await page.find(text);
+    return await helper.find(await helper.getNeededElement('search component form'), text);
 });
 
 Then(/^I see results contains '([^']*)' in the body$/, async (expectedText) => {

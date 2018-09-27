@@ -1,6 +1,6 @@
 'use strict';
 
-function get() {
+function getCurrentPage() {
     return browser.getCurrentUrl()
         .then((currentUrl) => {
             const [, appenderUrl,] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*html)(#.*)?$/.exec(currentUrl);
@@ -28,7 +28,7 @@ function getNeededElement(...args) {
 
 function getNeededElementByName([name, elements]) {
     name = name.toLowerCase();
-    return get().then(page => {
+    return getCurrentPage().then(page => {
         if (!Array.isArray(elements)) {
             if (page[name] !== undefined) {
                 return page[name];
@@ -51,20 +51,6 @@ function getNeededElementByNumber([number, elements]) {
     } else {
         throw new Error('Were Passed wrong parameters. The method takes [#numberOfElement, arrayOfWebElements].');
     }
-}
-
-async function clickOnReferencesOrButtons(elements, text) {
-    const elems = elements.map(element => element.getText());
-    return Promise.all(elems)
-        .then((results) => results.findIndex(elem => elem.toLowerCase() === (text.toLowerCase())))
-        .then((index) => {
-            if (index > - 1) {
-                return clickOnElement(elements[index])
-                    .then(() => true);
-            } else {
-                return false;
-            }
-        });
 }
 
 function clickOnElement(element) {
@@ -96,16 +82,16 @@ function filter(elements, ...options) {
                             browser.wait(ec.visibilityOf(elements[ind]), 5000); return elements;
                         })
                         .then((elements) => {
-                            browser.wait(ec.elementToBeClickable(elements[ind]), 5000); return elements;
+                             clickOnElement(elements[ind]);  return elements;
                         })
-                        .then((elements) => {
-                            elements[ind].click(); return elements;
-                        })
+                        // .then((elements) => {
+                        //     elements[ind].click(); return elements;
+                        // })
                         .then((elements) => elements[ind].element(by.xpath(opt)))
                         .then((element) => {
-                            browser.wait(ec.elementToBeClickable(element), 5000); return element;
+                            clickOnElement(element); //browser.wait(ec.elementToBeClickable(element), 5000); return element;
                         })
-                        .then((element) => element.click());
+                        //.then((element) => element.click());
                 }
             }));
 
@@ -114,8 +100,13 @@ function filter(elements, ...options) {
     }
 }
 
-// find() {
+function find(form, text) {
+    return browser.wait(ec.presenceOf(form), 5000)
+    .then(()=> form.element(by.css('input')))
+    .then((field)=> field.sendKeys(text))
+    .then(()=> form.element(by.css('button')))
+    .then((button)=>{ clickOnElement(button);/* browser.wait(ec.elementToBeClickable(button), 5000); return button;*/})
+    //.then((button)=> button.click())
+}
 
-// }
-
-module.exports = { clickOnReferencesOrButtons, clickOnElement, getNeededElement, get, getText, filter }
+module.exports = { clickOnElement, getNeededElement, getText, filter, find }
