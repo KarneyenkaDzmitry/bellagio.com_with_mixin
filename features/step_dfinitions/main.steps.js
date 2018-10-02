@@ -35,12 +35,12 @@ When(/^I use filter with options cousine = '([^']*)', price = '([^']*)', meal = 
     return await actions.filter(elementsButtons, cousine, price, meal);
 });
 
-Then(/^I should see '([^']*)' in results$/, async (shouldContainsText) => {
-    return expect((await actions.getText(await  helper.getNeededElement('body results headers'))).indexOf(shouldContainsText) > -1).to.be.true;
+Then(/^I should see '([^']*)' in '([^']*)'$/, async (shouldContainsText, array) => {
+    return expect((await actions.getText(await  helper.getNeededElement(array))).indexOf(shouldContainsText) > -1).to.be.true;
 });
 
-Then(/^Only One choice option$/, async () => {
-    return expect((await actions.getText(await  helper.getNeededElement('body results headers'))).length).to.be.equals(1);
+Then(/^'([^']*)' should have '(\d+)' elmement$/, async (array, number) => {
+    return expect((await actions.getText(await  helper.getNeededElement(array))).length).to.be.equals(number);
 });
 
 When(/^I choose the option by text '([^']*)' on menu '([^']*)'$/, async (option, menu) => {
