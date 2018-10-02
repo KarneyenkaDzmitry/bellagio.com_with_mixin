@@ -1,6 +1,6 @@
 'use strict';
 
-const { logger } = require('../../configs/logger.conf.js');
+const { logger } = require('../configs/logger.conf.js');
 
 function getCurrentPage() {
     return browser.getCurrentUrl()
@@ -8,12 +8,12 @@ function getCurrentPage() {
             const [, appenderUrl,] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*html)(#.*)?$/.exec(currentUrl);
             logger.debug(`was get current URL [${currentUrl}]. The appender is [${appenderUrl}]`);
             switch (appenderUrl) {
-                case 'en.html': return require('../home.page');
-                case 'en/hotel.html': return require('../hotel.page');
-                case 'en/entertainment.html': return require('../entertainment.page');
-                case 'en/restaurants.html': return require('../restaurants.page');
-                case 'en/itineraries/find-reservation.html': return require('../reservation.page');
-                case 'en/search.html': return require('../search.page')
+                case 'en.html': return require('../page-objects/home.page');
+                case 'en/hotel.html': return require('../page-objects/hotel.page');
+                case 'en/entertainment.html': return require('../page-objects/entertainment.page');
+                case 'en/restaurants.html': return require('../page-objects/restaurants.page');
+                case 'en/itineraries/find-reservation.html': return require('../page-objects/reservation.page');
+                case 'en/search.html': return require('../page-objects/search.page')
                 default: logger.error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
                     throw new Error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
             }

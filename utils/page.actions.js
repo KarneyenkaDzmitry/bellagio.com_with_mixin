@@ -1,6 +1,6 @@
 'use strict'
 
-const { logger } =require('../../configs/logger.conf.js');
+const { logger } =require('../configs/logger.conf.js');
 
 function clickOnElement(element) {
     return browser.wait(ec.elementToBeClickable(element))

@@ -2,8 +2,8 @@
 
 const { When, Then, Given, setDefaultTimeout } = require('cucumber');
 setDefaultTimeout(20 * 5000);
-const helper = require('../../page-objects/utils/page.helper.js');
-const actions = require('../../page-objects/utils/page.actions.js');
+const helper = require('../../utils/page.helper.js');
+const actions = require('../../utils/page.actions.js');
 const { expect } = require('chai');
 
 Given(/^I am on the home page '([^']*)'$/, async (host) => {
