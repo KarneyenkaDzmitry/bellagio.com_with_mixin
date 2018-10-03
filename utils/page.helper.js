@@ -5,27 +5,19 @@ const { logger } = require('../configs/logger.conf.js');
 function getCurrentPage() {
     return browser.getCurrentUrl()
         .then((currentUrl) => {
-            const [, appenderUrl,] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*html)(#.*)?$/.exec(currentUrl);
+            const [, appenderUrl] = /^(?:\w+\:\/\/\w+\.?\w+\.?\w+\/)(.*html)(#.*)?$/.exec(currentUrl);
             logger.debug(`was get current URL [${currentUrl}]. The appender is [${appenderUrl}]`);
             switch (appenderUrl) {
-                case 'en.html': return require('../page-objects/home.page');
-                case 'en/hotel.html': return require('../page-objects/hotel.page');
-                case 'en/entertainment.html': return require('../page-objects/entertainment.page');
-                case 'en/restaurants.html': return require('../page-objects/restaurants.page');
-                case 'en/itineraries/find-reservation.html': return require('../page-objects/reservation.page');
-                case 'en/search.html': return require('../page-objects/search.page')
-                default: logger.error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
-                    throw new Error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
+            case 'en.html': return require('../page-objects/home.page');
+            case 'en/hotel.html': return require('../page-objects/hotel.page');
+            case 'en/entertainment.html': return require('../page-objects/entertainment.page');
+            case 'en/restaurants.html': return require('../page-objects/restaurants.page');
+            case 'en/itineraries/find-reservation.html': return require('../page-objects/reservation.page');
+            case 'en/search.html': return require('../page-objects/search.page');
+            default: logger.error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
+                throw new Error(`The framework has not included suitable page-object for this url [${appenderUrl}]`);
             }
         });
-}
-
-/** The function takes name or number of element that it is supposed to find.
- *  defines current url and works with appropriate page 
- *  finds and returns needed WebElement
- */
-function getNeededElement(...args) {
-    return args[0].includes('#') ? getNeededElementByNumber(args) : getNeededElementByName(args);
 }
 
 function getNeededElementByName([name, elements]) {
@@ -34,7 +26,7 @@ function getNeededElementByName([name, elements]) {
     return getCurrentPage().then(page => {
         if (!Array.isArray(elements)) {
             if (page[name] !== undefined) {
-                logger.debug(`Element was found [${name}] on the page-object [${page.constructor}]`)
+                logger.debug(`Element was found [${name}] on the page-object [${page.constructor}]`);
                 return page[name];
             } else {
                 logger.error(`There is no the [${name}] element on the page [${page.path}].`);
@@ -66,4 +58,12 @@ function getNeededElementByNumber([number, elements]) {
     }
 }
 
-module.exports = {getNeededElement}
+/** The function takes name or number of element that it is supposed to find.
+ *  defines current url and works with appropriate page
+ *  finds and returns needed WebElement
+ */
+function getNeededElement(...args) {
+    return args[0].includes('#') ? getNeededElementByNumber(args) : getNeededElementByName(args);
+}
+
+module.exports = { getNeededElement };

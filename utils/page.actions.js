@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { logger } = require('../configs/logger.conf.js');
 
@@ -36,20 +36,20 @@ function filter(elements, ...options) {
                 if (option !== 'Clear') {
                     const opt = `//li[@role="radio"]/a[text()="${option}"][@class]`;
                     $$('button[id*=tagsFilter]')
-                        .then((elements) => {
-                            browser.sleep(2000); return elements;
+                        .then((elems) => {
+                            browser.sleep(2000); return elems;
                         })
-                        .then(elements => {
-                            browser.wait(ec.visibilityOf(elements[ind]), 5000); return elements;
+                        .then(elems => {
+                            browser.wait(ec.visibilityOf(elems[ind]), 5000); return elems;
                         })
-                        .then(elements => {
-                            clickOnElement(elements[ind]); return elements;
+                        .then(elems => {
+                            clickOnElement(elems[ind]); return elems;
                         })
-                        .then(elements => elements[ind].element(by.xpath(opt)))
+                        .then(elems => elems[ind].element(by.xpath(opt)))
                         .then(element => clickOnElement(element))
-                        .catch((error)=>{
+                        .catch((error) => {
                             logger.error(`Has been thrown the error withing performing the action filter([${elements}, ${options}])`, error);
-                            throw error; 
+                            throw error;
                         });
                 }
             }));
@@ -66,11 +66,13 @@ function find(form, text) {
         .then(() => form.element(by.css('input')))
         .then((field) => field.sendKeys(text))
         .then(() => form.element(by.css('button')))
-        .then((button) => { clickOnElement(button); })
-        .catch((error)=>{
+        .then((button) => {
+            clickOnElement(button);
+        })
+        .catch((error) => {
             logger.error(`Has been thrown the error withing performing the action find([${form}, ${text}])`, error);
             throw error;
         });
 }
 
-module.exports = { find, filter, getText, clickOnElement }
+module.exports = { find, filter, getText, clickOnElement };

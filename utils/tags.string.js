@@ -6,10 +6,10 @@ function getStringOfTags(tags) {
     if ((tags !== undefined) && (tags !== null)) {
         tags.split(',').forEach((element, ind, array) => {
             if (element.startsWith('@')) {
-                result += (ind < array.length - 1) ? element + ' or ' : element + '';
+                result += (ind < array.length - 1) ? element + ' or ' : String(element);
             } else {
-                logger.error(`Was passed wrong parameter [${element}]. Every tag have to start with [@] and seporates with comma`)
-                throw new ERROR('Was passed wrong data. Every tag have to start with [@]');
+                logger.error(`Was passed wrong parameter [${element}]. Every tag have to start with [@] and seporates with comma`);
+                throw new Error('Was passed wrong data. Every tag have to start with [@]');
             }
         });
     }

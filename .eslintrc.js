@@ -5,11 +5,11 @@ module.exports = {
         "node": true,
         "protractor": true
     },
-    "extends": "eslint:recommended",
+    //"extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
-        "ecmaFeatures": { "impliedStrict": true }
+        "ecmaFeatures": { "impliedStrict": true,"experimentalObjectRestSpread": true }
     },
     "globals": { "ec": true },
     "rules": {
@@ -21,7 +21,7 @@ module.exports = {
         "no-empty": 1,
         "accessor-pairs": 2,
         "block-scoped-var": 2,
-        "complexity": ["error", 4],
+        "complexity": [0, 4],
         "consistent-return": 0,
         "curly": 2,
         "default-case": 2,
@@ -79,7 +79,7 @@ module.exports = {
         "no-shadow-restricted-names": 2,
         "no-shadow": 1,
         "no-undef-init": 2,
-        "no-undefined": 2,
+        "no-undefined": 0,
         "no-use-before-define": 1,
         "array-bracket-spacing": 1,
         "block-spacing": [2, "always"],
@@ -117,7 +117,7 @@ module.exports = {
         "no-lonely-if": 1,
         "no-mixed-spaces-and-tabs": 2,
         "no-multiple-empty-lines": 2,
-        "no-negated-condition": 2,
+        "no-negated-condition": 0,
         "no-nested-ternary": 2,
         "no-new-object": 2,
         "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
