@@ -28,11 +28,8 @@ There is a list of modules and their versions:
     "gulp-shell": "^0.6.5"
 
 ## Usage
-
- Before start tests it is supposed to run webdriver server. Use the command [webdriver-manager start].
- Or via npm script [npm run wd-st]
- 
- After server have started run tests via command [npm start]
+1. `$ .\node_modules\.bin\protractor .\configs\conf.js --tags '@Restaurants,@Search'`<br>
+2. `$ npm test -- --tags '@Restaurants,@Search'`<br>
 
 ### Author
 #### Dzmitry_Karneyenka, Republic of Belarus, Minsk 
