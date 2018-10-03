@@ -7,12 +7,12 @@ exports.config = {
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
     cucumberOpts: {
-        "require": ['../features/step_definitions/*steps.js', '../features/step_definitions/hooks.js'],
-        "tags": false,
-        "profile": false,
+        require: ['../features/step_definitions/*steps.js', '../features/step_definitions/hooks.js'],
+        profile: false,
         'no-source': true,
-        "format": 'json:./reports/report.json',
-        "ignoreUncaughtExceptions": true
+        format: 'json:./reports/report.json',
+        ignoreUncaughtExceptions: true
+        //tags : ['@Search', '@Search or @Restaurants']
     },
     specs: ['../features/*.feature'],
     logLevel: 'ERROR',

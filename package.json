@@ -38,7 +38,8 @@
     "gulp-protractor": "^4.1.0",
     "protractor": "^5.4.0",
     "protractor-cucumber-framework": "^6.1.1",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "yargs": "^12.0.2"
   },
   "devDependencies": {
     "eslint": "^5.2.0",

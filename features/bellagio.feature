@@ -1,3 +1,4 @@
+# @AllTests
 Feature: Bellagio resource
 
     Background:
@@ -14,6 +15,7 @@ Feature: Bellagio resource
             | HOTEL         | HOTEL ROOMS & SUITES |
             | ENTERTAINMENT | ENTERTAINMENT        |
 
+    @Restaurants
     Scenario Outline: Filter should return results related with options
         Given I am on '<Page>' page
         When I use filter with options cousine = '<Cousine>', price = '<Price>', meal = '<Meal>'
@@ -36,11 +38,13 @@ Feature: Bellagio resource
         And I choose 'room option' in field 'reservation'
         Then 'room option' should be selected and contains text 'Room'
 
+@Search
 Scenario: Search component elements should be presented
     Given I have chosen 'search component' component
     Then I should see input field with text 'Search restaurants, shows, more…'
     And 'disabled' button with text 'SEARCH'
 
+@Search
 Scenario Outline: If user Search for something User should see results
     Given I have chosen 'search component' component
     When I search for '<text>'
@@ -49,6 +53,7 @@ Scenario Outline: If user Search for something User should see results
         | text      | result                   |
         | du soleil | "O" BY CIRQUE DU SOLEIL® |
 
+@Search
 Scenario Outline: If user Search for something but nothing has been found should be appeared message
     Given I have chosen 'search component' component
     When I search for '<text>'
