@@ -13,7 +13,7 @@ function getStringOfTags(tags) {
             }
         });
     }
-    logger.debug();
+    logger.debug(`The result string of tags is [${result}]`);
     return result;
 }
 

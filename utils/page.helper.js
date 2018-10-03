@@ -59,9 +59,9 @@ function getNeededElementByName([name, elements]) {
 function getNeededElementByNumber([number, elements]) {
     logger.debug(`Try to get element by number [${number}] from array [${Array.isArray(elements)}]`);
     if (Array.isArray(elements)) {
-
         return elements[Number.parseInt(number.substring(1, number.length))];
     } else {
+        logger.error(`Were passed wrong parameters. The method takes [#numberOfElement, arrayOfWebElements].`);
         throw new Error('Were passed wrong parameters. The method takes [#numberOfElement, arrayOfWebElements].');
     }
 }
