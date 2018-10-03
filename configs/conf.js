@@ -3,7 +3,6 @@ const logger = require('./logger.conf.js').logger;
 const reporter = require('cucumber-json-reporter-to-html');
 const getTagsString = require('../utils/tags.string');
 const yargs = require('yargs').argv;
-
 exports.config = {
     getPageTimeout: 60000,
     framework: 'custom',
