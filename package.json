@@ -6,7 +6,7 @@
   "scripts": {
     "wd-up": "webdriver-manager update",
     "wd-st": "webdriver-manager start",
-    "test": "protractor ./configs/conf.js",
+    "test": "./node_modules/.bin/protractor ./configs/conf.js",
     "report": ".\\reports\\Bellagio.html",
     "start": "node ./node_modules/gulp/bin/gulp.js",
     "lint": "eslint ./ --fix",

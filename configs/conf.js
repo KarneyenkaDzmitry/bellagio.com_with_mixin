@@ -1,6 +1,8 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
 const reporter = require('cucumber-json-reporter-to-html');
+const tagsString = require('../utils/tags.string');
+const yargs = require('yargs').argv;
 
 exports.config = {
     getPageTimeout: 60000,
@@ -11,8 +13,8 @@ exports.config = {
         profile: false,
         'no-source': true,
         format: 'json:./reports/report.json',
-        ignoreUncaughtExceptions: true
-        //tags : ['@Search', '@Search or @Restaurants']
+        ignoreUncaughtExceptions: true,
+        tags : tagsString(yargs.tags)
     },
     specs: ['../features/*.feature'],
     logLevel: 'ERROR',

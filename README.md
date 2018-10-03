@@ -45,6 +45,6 @@ Don't forget use additional '--' dashes because it is the special simbols that s
  2. using plant command<br>
 `$ .\node_modules\.bin\protractor .\configs\conf.js --cucumberOpts.tags='@Search or @Restaurants'`<br>
 Set 'cucumberOpts.tags' according to needed tests with related tags.<br>
- Use construction : '@tag1 and @tag2' - for tests that contains that two tags<br>
- -----------------: '@tag1 or @tag2' -- for tests that includes or tag1 or tag2<br>
+ Use construction : '@tag1 and @tag2' - for tests that contains these two tags<br>
+ -------------------: '@tag1 or @tag2' -- for tests that include or tag1 or tag2<br>
 
