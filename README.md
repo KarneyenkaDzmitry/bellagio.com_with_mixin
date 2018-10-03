@@ -7,7 +7,7 @@
 
 The application needs to have the following dependencies:
 1. npm --version 6.1.0
-2. node --version 8.11.3
+2. node --version 8.*.*
 
 ### Deploy
 
@@ -44,5 +44,6 @@ Don't forget use additional '--' dashes because it is the special simbols that s
 Set 'cucumberOpts.tags' according to needed tests with related tags.<br>
  Use construction : '@tag1 and @tag2' - for tests that contains these two tags<br>
  -------------------: '@tag1 or @tag2' --- for tests that include or tag1 or tag2<br>
- -------------------: '@tag1 or not @tag2' - fortests that includes @tag1 or doesn't include @tag2
+ -------------------: '@tag1 or not @tag2' - fortests that includes @tag1 or doesn't include @tag2<br>
+ [see documentation](https://docs.cucumber.io/cucumber/tag-expressions/)<br>
 

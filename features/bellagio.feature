@@ -4,7 +4,7 @@ Feature: Bellagio resource
         Given I am on the home page 'https://www.bellagio.com/en.html'
 
     @Redirections
-    Scenario Outline: Every page should contain header <h1> on it's body
+    Scenario Outline: Every page should contain header [h1] on it's body
         Given I am on '<Page>' page
         Then I should see '<text>' text as a header of a body
         And  results wrapper should be present
@@ -27,7 +27,7 @@ Feature: Bellagio resource
             | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
 
     @Reservation
-    Scenario: Reservation page should contain header <h1> = 'Find Your Reservation' on it's body
+    Scenario: Reservation page should contain header [h1] = 'Find Your Reservation' on it's body
         When I click on 'guest services' reference on the page header
         And I choose the option by text 'find reservation' on menu 'guest services menu'
         Then I should see 'Find Your Reservation' text as a header of a body
