@@ -3,17 +3,7 @@ Feature: Bellagio resource
     Background:
         Given I am on the home page 'https://www.bellagio.com/en.html'
 
-    @Redirections
-    Scenario Outline: Every page should contain header [h1] on it's body
-        Given I am on '<Page>' page
-        Then I should see '<text>' text as a header of a body
-        And  results wrapper should be present
-
-        Examples:
-            | Page          | text                 |
-            | RESTAURANTS   | RESTAURANTS          |
-            | HOTEL         | HOTEL ROOMS & SUITES |
-            | ENTERTAINMENT | ENTERTAINMENT        |
+    
 
     @Restaurants
     Scenario Outline: Filter should return results related with options
@@ -24,7 +14,7 @@ Feature: Bellagio resource
 
         Examples:
             | Page        | Cousine | Price | Meal                 | Result                 |
-            | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
+            | RESTAURANTS | Italian | Clear | Lunch | LAGO BY JULIAN SERRANO |
 
     @Reservation
     Scenario: Reservation page should contain header [h1] = 'Find Your Reservation' on it's body

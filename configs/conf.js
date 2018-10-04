@@ -1,7 +1,6 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
-const reporter = require('cucumber-json-reporter-to-html');
-const getTagsString = require('../utils/tags.string');
+const { getTagsString, deleteAllFiles} = require('../utils/tags.string');
 const yargs = require('yargs').argv;
 
 exports.config = {
@@ -31,25 +30,16 @@ exports.config = {
         browserName: 'chrome',
         chromeOptions: {
             args: ['disable-infobars', '--test-type']
-        }
+        },
+        shardTestFiles: true,
+        count: 1,
+        maxInstances: 2
     },
     beforeLaunch: () => {
         logger.info('Get started!');
+        deleteAllFiles('./reports');
     },
     afterLaunch: () => {
-
         logger.info('Done');
     },
-    onComplete: () => {
-        reporter.create('./reports/report.json', './reports/Bellagio.html', 'Bellagio.com UI-Tests', 'Tests based on: cucumber with protractor approach ');
-    }
-
-    /**
-       * A callback function called once tests are finished. onComplete can
-       * optionally return a promise, which Protractor will wait for before
-       * shutting down webdriver.
-       *
-       * At this point, tests will be done but global objects will still be
-       * available.
-       */
 };
