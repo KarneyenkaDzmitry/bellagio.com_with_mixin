@@ -23,9 +23,9 @@
   "author": "Dzmitry_Karneyenka, Belarus, Minsk",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KarneyenkaDzmitry/protractor_js/issues"
+    "url": "https://github.com/KarneyenkaDzmitry/bellagio.com_with_mixin/issues"
   },
-  "homepage": "https://github.com/KarneyenkaDzmitry/protractor_js#readme",
+  "homepage": "https://github.com/KarneyenkaDzmitry/bellagio.com_with_mixin#readme",
   "dependencies": {
     "chai": "^4.1.2",
     "cucumber": "^5.0.1",
