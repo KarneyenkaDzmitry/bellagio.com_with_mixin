@@ -14,7 +14,7 @@ Feature: Bellagio resource
 
         Examples:
             | Page        | Cousine | Price | Meal                 | Result                 |
-            | RESTAURANTS | Italian | Clear | Lunch | LAGO BY JULIAN SERRANO |
+            | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANON |
 
     @Reservation
     Scenario: Reservation page should contain header [h1] = 'Find Your Reservation' on it's body
