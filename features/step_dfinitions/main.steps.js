@@ -22,12 +22,15 @@ When(/I click on '([^']*)' reference on the page header/, async(refer) => {
     return await actions.clickOnElement(await helper.getNeededElement(refer));
 });
 
-Then(/^I should see '([^']*)' text as a header of a body$/, async(expectedText) => {
-    return expect(await actions.getText(await helper.getNeededElement('body header h1'))).to.be.equals(expectedText);
+Then(/^I should see '([^']*)' text in '([^']*)' of a body$/, async(expectedText, element) => {
+    return expect(await actions.getText(await helper.getNeededElement(element))).to.be.equals(expectedText);
 });
 
-Then(/^results wrapper should be present$/, async() => {
-    return expect(await (await helper.getNeededElement('body')).isPresent()).to.be.true;
+Then(/^'([^']*)' should be '([^']*)'$/, async(elementName, option) => {
+    return option === 'present'? 
+    expect(await (await helper.getNeededElement(elementName)).isPresent()).to.be.true
+    :
+    expect(await (await helper.getNeededElement(elementName)).isPresent()).to.be.false;
 });
 
 When(/^I use filter with options cousine = '([^']*)', price = '([^']*)', meal = '([^']*)'$/, async(cousine, price, meal) => {

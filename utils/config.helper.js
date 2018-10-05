@@ -22,10 +22,10 @@ function getTagsString({ tags }) {
     return result;
 }
 
-function getCapabilities({ browserName = 'chrome', shardTestFiles = false, maxInstances = 1 }) {
+function getCapabilities({ browserName = 'chrome', maxInstances = 1 }) {
     const capabilities = {};
     capabilities.browserName = browserName;
-    capabilities.shardTestFiles = shardTestFiles;
+    capabilities.shardTestFiles = maxInstances > 1;
     capabilities.maxInstances = maxInstances;
     capabilities.chromeOptions = capabilities.browserName === 'chrome' ? {
         args: ['disable-infobars', '--test-type']
