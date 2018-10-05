@@ -25,6 +25,7 @@ function getCapabilities({ browserName = 'chrome', shardTestFiles = false, maxIn
     capabilities.chromeOptions = capabilities.browserName === 'chrome' ? {
         args: ['disable-infobars', '--test-type']
     } : undefind;
+    logger.debug(`getCapabilities method has returned : [${capabilities}]`);
     return capabilities;
 }
 
@@ -64,8 +65,5 @@ async function combineJsonReports(directory) {
         console.log(err);
     }
 }
-
-
-
 
 module.exports = { combineJsonReports, getCapabilities, getTagsString };

@@ -15,15 +15,22 @@ function getText(elements) {
     if (Array.isArray(elements)) {
         const results = elements.map(element => element.getText());
         return Promise.all(results)
+            .then((textArray) => {
+                logger.debug(`Was return array with strings :[${textArray}]`);
+                return textArray;
+            })
             .catch((error) => {
-                logger.error(`Has been thrown the error withing performing the action getText([${elements}]) all elements`, error);
+                logger.error(`Has been thrown the error withing performing the action getText([${elements}]) all elements` + error);
                 throw error;
             });
     } else {
         return elements.getText()
-            .then((text) => text)
+            .then((text) => {
+                logger.debug(`Was return text :[${text}]`);
+                return text;
+            })
             .catch((error) => {
-                logger.error(`Has been thrown the error withing performing the action getText([${elements}])`, error);
+                logger.error(`Has been thrown the error withing performing the action getText([${elements}])` + error);
                 throw error;
             });
     }

@@ -3,8 +3,6 @@ Feature: Bellagio resource
     Background:
         Given I am on the home page 'https://www.bellagio.com/en.html'
 
-    
-
     @Restaurants
     Scenario Outline: Filter should return results related with options
         Given I am on '<Page>' page
@@ -14,7 +12,7 @@ Feature: Bellagio resource
 
         Examples:
             | Page        | Cousine | Price | Meal                 | Result                 |
-            | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANON |
+            | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANO |
 
     @Reservation
     Scenario: Reservation page should contain header [h1] = [Find Your Reservation] on its body
