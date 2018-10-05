@@ -1,4 +1,9 @@
 'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const readdir = util.promisify(fs.readdir);
 const { logger } = require('../configs/logger.conf.js');
 
 function getTagsString({ tags }) {
@@ -28,25 +33,6 @@ function getCapabilities({ browserName = 'chrome', shardTestFiles = false, maxIn
     logger.debug(`getCapabilities method has returned : [${capabilities}]`);
     return capabilities;
 }
-
-const fs = require('fs');
-const util = require('util');
-const readdir = util.promisify(fs.readdir);
-// const unlink = util.promisify(fs.unlink);
-const path = require('path');
-
-// async function clearFolder(directory) {
-//     try {
-//         const files = await readdir(directory);
-//         const unlinkPromises = files.map(filename => {
-//             const filePath = `${directory}/${filename}`;
-//             fs.statSync(filePath).isDirectory() ? clearFolder(filePath) : unlink(filePath);
-//         });
-//         return await Promise.all(unlinkPromises);
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
 
 async function combineJsonReports(directory) {
     try {
