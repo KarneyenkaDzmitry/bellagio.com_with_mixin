@@ -17,13 +17,13 @@ Feature: Bellagio resource
             | RESTAURANTS | Italian | Clear | Breakfast and Brunch | LAGO BY JULIAN SERRANON |
 
     @Reservation
-    Scenario: Reservation page should contain header [h1] = 'Find Your Reservation' on it's body
+    Scenario: Reservation page should contain header [h1] = [Find Your Reservation] on its body
         When I click on 'guest services' reference on the page header
         And I choose the option by text 'find reservation' on menu 'guest services menu'
         Then I should see 'Find Your Reservation' text as a header of a body
 
     @Reservation
-    Scenario: User should have an apportunity to choose options in field 'reservation' on Reservation page
+    Scenario: User should have an apportunity to choose options in field [reservation] on Reservation page
         # #Given I have opened the 'RESERVATION' page
         When I click on 'guest services' reference on the page header
         And I choose the option by text 'find reservation' on menu 'guest services menu'

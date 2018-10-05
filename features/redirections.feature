@@ -1,10 +1,10 @@
-Feature: Feature Name
+Feature: Redirections through references from header
 
 Background:
         Given I am on the home page 'https://www.bellagio.com/en.html'
         
 @Redirections
-    Scenario Outline: Every page should contain header [h1] on it's body
+    Scenario Outline: Every page should contain header [h1] on its body
         Given I am on '<Page>' page
         Then I should see '<text>' text as a header of a body
         And  results wrapper should be present

@@ -1,6 +1,6 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
-const { getTagsString, deleteAllFiles} = require('../utils/tags.string');
+const { getTagsString, getCapabilities } = require('../utils/config.helper.js');
 const yargs = require('yargs').argv;
 
 exports.config = {
@@ -13,7 +13,7 @@ exports.config = {
         'no-source': true,
         "format": 'json:./reports/report.json',
         "ignoreUncaughtExceptions": true,
-        "tags": getTagsString(yargs.tags)
+        "tags": getTagsString(yargs)
     },
     specs: ['../features/*.feature'],
     logLevel: 'ERROR',
@@ -26,18 +26,9 @@ exports.config = {
         browser.waitForAngularEnabled(true);
         global.ec = protractor.ExpectedConditions;
     },
-    capabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
-            args: ['disable-infobars', '--test-type']
-        },
-        shardTestFiles: true,
-        count: 1,
-        maxInstances: 2
-    },
+    capabilities: getCapabilities(yargs),
     beforeLaunch: () => {
         logger.info('Get started!');
-        deleteAllFiles('./reports');
     },
     afterLaunch: () => {
         logger.info('Done');
