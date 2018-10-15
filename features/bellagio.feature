@@ -16,14 +16,13 @@ Feature: Bellagio resource
 
     @Reservation
     Scenario: Reservation page should contain header [h1] = [Find Your Reservation] on its body
-        When I click on 'guest services' reference on the page header
+        When I click on 'guest services' reference
         And I choose the option by text 'find reservation' on menu 'guest services menu'
-        Then I should see 'Find Your Reservation' text as a header of a body
+        Then I should see 'Find Your Reservation' text in 'body header h1' of a body
 
     @Reservation
     Scenario: User should have an apportunity to choose options in field [reservation] on Reservation page
-        # #Given I have opened the 'RESERVATION' page
-        When I click on 'guest services' reference on the page header
+        When I click on 'guest services' reference
         And I choose the option by text 'find reservation' on menu 'guest services menu'
         And I choose 'room option' in field 'reservation'
         Then 'room option' should be selected and contains text 'Room'

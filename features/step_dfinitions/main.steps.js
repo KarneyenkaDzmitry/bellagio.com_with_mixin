@@ -18,7 +18,7 @@ Given(/I have chosen '([^']*)' component/, async(componentName) => {
     return (await helper.getNeededElement(componentName)).click();
 });
 
-When(/I click on '([^']*)' reference on the page header/, async(refer) => {
+When(/I click on '([^']*)' reference/, async(refer) => {
     return await actions.clickOnElement(await helper.getNeededElement(refer));
 });
 
