@@ -50,6 +50,9 @@ There are some scripts in [package.json](https://github.com/KarneyenkaDzmitry/be
 1. `$ .\node_modules\.bin\protractor .\configs\conf.js --tags '@Restaurants,@Search'`<br>
 2. `$ npm test -- --tags '@Restaurants,@Search'`<br>
 3. `$ npm test`
+4. `$ npm test -- --maxInstances 2`
+5. `$ npm test -- --browserName firefox`
+6. `$ npm test -- --browserName firefox --maxInstances 2`
 
 ### NPM scripts 
 
